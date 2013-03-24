@@ -8,9 +8,8 @@ object ApplicationBuild extends Build {
   val appVersion      = "1.0-SNAPSHOT"
 
   val appDependencies = Seq(
-    // Add your project dependencies here,
-    jdbc,
-    anorm
+    "rome" % "rome" % "1.0",
+    "org.reactivemongo" %% "reactivemongo" % "0.8"
   )
 
 

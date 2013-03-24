@@ -1,3 +1,7 @@
+#scala
+*.class
+
+#play
 logs
 project/project
 project/target
@@ -5,11 +9,18 @@ target
 tmp
 .history
 dist
+bin
+
+#intellij
 /.idea
 /*.iml
 /out
 /.idea_modules
+/RUNNING_PID
+
+
+# eclipse
+/.cache
 /.classpath
 /.project
-/RUNNING_PID
 /.settings
