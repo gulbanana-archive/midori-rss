@@ -8,8 +8,8 @@ object ApplicationBuild extends Build {
   val appVersion      = "1.0-SNAPSHOT"
 
   val appDependencies = Seq(
+    //"com.google.inject" % "guice" % "3.0",
     "rome" % "rome" % "1.0",
-    "org.reactivemongo" %% "reactivemongo" % "0.8",
     "org.reactivemongo" %% "play2-reactivemongo" % "0.8"
   )
 

@@ -17,7 +17,7 @@ import play.api.Play.current
 import models._
 
 object Test extends Controller with MongoController {
-  lazy val db = ReactiveMongoPlugin.db
+  val db = ReactiveMongoPlugin.db
   lazy val users = db("users")
   lazy val feeds = db("feeds")
 
