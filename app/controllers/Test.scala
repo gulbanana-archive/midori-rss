@@ -17,6 +17,7 @@ import play.api.Play.current
 import models._
 
 object Test extends Controller with MongoController {
+  val dao = Composer.resolveDAO
   val db = ReactiveMongoPlugin.db
   lazy val users = db("users")
   lazy val feeds = db("feeds")
@@ -41,35 +42,33 @@ object Test extends Controller with MongoController {
   def create = Action {
     Async {      
       val insertions = Seq(
-        users.insert(Json.toJson(User(
+        dao.createUser(User(
 	      "banana", 
 	      Seq(
 	        Subscription("homestuck", Seq()),
 	        Subscription("skeet", Seq())
 	      )
-	    ))),
-	    feeds.insert(Json.toJson(Feed(
+	    )),
+	    dao.createFeed(Feed(
 	      "homestuck",
 	      "MS Paint Adventures",
 	      DateTime.now(),
 	      Seq()
-	    ))),
-	    feeds.insert(Json.toJson(Feed(
+	    )),
+	    dao.createFeed(Feed(
 	      "skeet",
 	      "Jon Skeet",
 	      DateTime.now(),
 	      Seq()
-	    )))
+	    ))
       )
       
-      Future.fold(insertions)("") { (currentErrors, insertion) =>  
-        if(insertion.ok) {
-          currentErrors
-        } else {
-          currentErrors + insertion.errMsg.get
-        }
-      } map { s => 
-        Ok("Created MidorI database.\n%s".format(s))
+      Future.reduce(insertions) { _ && _ } map { 
+        if (_) { 
+	      Ok("Created MidorI database.")
+	    } else {
+	      Ok("Failed to create MidorI database.")
+	    }
       }
     }
   }

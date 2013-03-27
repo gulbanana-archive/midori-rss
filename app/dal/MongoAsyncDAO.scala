@@ -8,6 +8,7 @@ import play.modules.reactivemongo._
 import play.modules.reactivemongo.PlayBsonImplicits._
 import reactivemongo.api._
 import reactivemongo.bson.handlers.DefaultBSONHandlers._
+import reactivemongo.core.commands.LastError
 import models._
 
 class MongoAsyncDAO extends AsyncDAO {
@@ -41,6 +42,17 @@ class MongoAsyncDAO extends AsyncDAO {
       .toList
       .map(_.map(feed => feed.as[Feed])
     )
+  }
+  
+  def createUser(user: User) = users.insert(Json.toJson(user)).map(checkError)
+  
+  def createFeed(feed: Feed) = feeds.insert(Json.toJson(feed)).map(checkError)
+  
+  //convert LastErrors to an exception paradigm
+  private def checkError(error: LastError) = if (error.ok) {
+    true
+  } else {
+    throw error 
   }
 }
 
