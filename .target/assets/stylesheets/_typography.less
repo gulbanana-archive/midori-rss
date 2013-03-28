@@ -1,0 +1,43 @@
+@import "_theme.less";
+
+body, textarea {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: @foreground-color;
+  background-color: @background-color;
+}
+
+.header(@line-height, @text-height, @small-height) {
+  margin: 10px 0;
+  font-size: @text-height;
+  font-weight: bold;
+  line-height: @line-height;
+  text-rendering: optimizelegibility;
+
+  small {
+    font-size: @small-height;
+    font-weight: normal;
+    line-height: @line-height;
+    color: #999999;
+  }
+}
+
+h1 { .header(40px, 38.5px, 24.5px); }
+h2 { .header(40px, 31.5px, 17.5px); }
+h3 { .header(40px, 24.5px, 14px); }
+h4 { .header(20px, 17.5px, 14px); }
+h5 { .header(20px, 14px, 14px); }
+h6 { .header(20px, 11.9px, 11.9px); }
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin: 0px; padding: @base-pad;
+}
+
+div {
+  margin: 0px; padding: 0px;
+}
+
+button {
+  font-size: 16px;
+}

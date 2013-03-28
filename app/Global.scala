@@ -17,11 +17,11 @@ object Global extends GlobalSettings {
     )
   }  
   
-  private def getActor[T <: Actor](c: Class[T]) = Akka.system.actorOf(Props(MidorIComposer.resolver(c))) 
-  
   override def onStop(app: Application) {
     scheduledUpdate.cancel()
   }
   
-  override def getControllerInstance[T](clazz: Class[T]) = MidorIComposer.resolve(clazz)
+  override def getControllerInstance[T](`class`: Class[T]) = MidorIComposer.resolve(`class`)
+  
+  private def getActor[T <: Actor](`class`: Class[T]) = Akka.system.actorOf(Props(MidorIComposer.resolver(`class`)))
 }

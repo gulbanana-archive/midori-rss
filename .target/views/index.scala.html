@@ -1,7 +1,10 @@
-@(message: String)
+@(user: User, entries: Seq[(Entry, Feed)])
 
-@main("Welcome to Play 2.1") {
-    
-    @play20.welcome(message)
-    
+@main("MidorI Feed") {
+  <h1>@{user.username}'s news</h1>
+  <div>
+    @for(e <- entries) {
+      @entry(e._1, e._2)
+    }
+  </div>
 }

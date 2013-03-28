@@ -1,0 +1,39 @@
+@import "_theme.less";
+@import "_links.less";
+@import "_typography.less";
+
+.bordered {
+  border: 2px solid @border-color;
+  .rounded-corners; 
+}
+
+.rounded-corners(@radius: 6px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+
+body {
+  margin: 0px; padding: 0px;
+}
+body .content {
+  background-color: @background-color;
+  margin: @base-pad*2; padding: 0px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+body {
+	margin: 10px; padding: 0px;
+}
+
+div.item {
+	margin: 0px; padding: @base-pad;
+	.bordered;
+	margin-bottom: @base-pad;
+}
