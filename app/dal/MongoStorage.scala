@@ -11,7 +11,7 @@ import reactivemongo.bson.handlers.DefaultBSONHandlers._
 import reactivemongo.core.commands.LastError
 import models._
 
-class MongoAsyncDAO extends AsyncDAO {
+class MongoStorage extends AsyncStorage {
   val db = ReactiveMongoPlugin.db
   lazy val users = db("users")
   lazy val feeds = db("feeds")
@@ -55,11 +55,3 @@ class MongoAsyncDAO extends AsyncDAO {
     throw error 
   }
 }
-
-
-
-/*
- (for (
-          encodedUser <- user; 
-          decodedUser <- encodedUser.asOpt[User]
-        ) yield { tryGetFeeds(decodedUser)}) getOrElse future {Seq.empty[JsValue]}*/

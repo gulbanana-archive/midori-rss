@@ -5,10 +5,9 @@ import ExecutionContext.Implicits.global
 import play.api._
 import play.api.mvc._
 import models._
+import dal._
 
-object Web extends Controller {
-  val dao = Composer.resolveDAO 
-
+class Web(dao: AsyncStorage, internet: FeedSource) extends Controller {
   def index = Action {
     Async {      
       for (

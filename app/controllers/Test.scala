@@ -1,23 +1,19 @@
 package controllers
 
 import scala.concurrent._
-
 import org.joda.time._
-
 import reactivemongo.api._
 import reactivemongo.bson.handlers.DefaultBSONHandlers._
-
 import play.modules.reactivemongo._
 import play.modules.reactivemongo.PlayBsonImplicits._
 import play.api._
 import play.api.mvc._
 import play.api.libs.json._
 import play.api.Play.current
-
 import models._
+import dal._
 
-object Test extends Controller with MongoController {
-  val dao = Composer.resolveDAO
+class Test(dao: AsyncStorage)  extends Controller with MongoController {
   val db = ReactiveMongoPlugin.db
   lazy val users = db("users")
   lazy val feeds = db("feeds")

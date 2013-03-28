@@ -7,5 +7,7 @@ object Global extends GlobalSettings {
   
   override def onStop(app: Application) {
     Logger.info("onStop")
-  }  
+  }
+  
+  override def getControllerInstance[T](clazz: Class[T]) = MidorIComposer.resolve(clazz).asInstanceOf[T]
 }

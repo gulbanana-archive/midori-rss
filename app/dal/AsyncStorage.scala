@@ -3,7 +3,7 @@ package dal
 import scala.concurrent.Future
 import models._
 
-trait AsyncDAO {
+trait AsyncStorage {
   def tryGetUser() : Future[Option[User]]
   def getAllFeeds(user: User) : Future[Seq[Feed]]
   def createUser(user: User) : Future[Boolean]

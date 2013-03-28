@@ -3,11 +3,11 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Web.index
+GET     /                           @controllers.Web.index
 
 # Test stuff
-GET     /create                     controllers.Test.create
-GET     /delete                     controllers.Test.delete
+GET     /create                     @controllers.Test.create
+GET     /delete                     @controllers.Test.delete
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
