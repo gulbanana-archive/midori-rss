@@ -12,10 +12,12 @@ object Global extends GlobalSettings {
   override def onStart(app: Application) {
     scheduledUpdate = Akka.system.scheduler.schedule(
       10 seconds, 5 minutes, 
-      MidorIComposer.resolveActor(classOf[FeedChecker]), 
+      getActor(classOf[FeedChecker]), 
       "update"
     )
   }  
+  
+  private def getActor[T <: Actor](c: Class[T]) = Akka.system.actorOf(Props(MidorIComposer.resolver(c))) 
   
   override def onStop(app: Application) {
     scheduledUpdate.cancel()
