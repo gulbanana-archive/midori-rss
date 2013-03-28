@@ -48,6 +48,10 @@ class MongoStorage extends AsyncStorage {
   
   def createFeed(feed: Feed) = feeds.insert(Json.toJson(feed)).map(checkError)
   
+  def deleteAllUsers() = users.drop()
+  
+  def deleteAllFeeds() = feeds.drop()
+  
   //convert LastErrors to an exception paradigm
   private def checkError(error: LastError) = if (error.ok) {
     true

@@ -1,32 +1,21 @@
 package controllers
 
 import scala.concurrent._
+import ExecutionContext.Implicits.global
 import org.joda.time._
-import reactivemongo.api._
-import reactivemongo.bson.handlers.DefaultBSONHandlers._
-import play.modules.reactivemongo._
-import play.modules.reactivemongo.PlayBsonImplicits._
 import play.api._
 import play.api.mvc._
-import play.api.libs.json._
-import play.api.Play.current
 import models._
 import dal._
 
-class Test(dao: AsyncStorage)  extends Controller with MongoController {
-  val db = ReactiveMongoPlugin.db
-  lazy val users = db("users")
-  lazy val feeds = db("feeds")
-
+class Test(dao: AsyncStorage)  extends Controller {
   def delete = Action {
-    
-    Async {   
+    Async {
       for (
-        droppedUsers <- users.drop();
-        droppedFeeds <- feeds.drop();
-        droppedDB <- db.drop()
+        droppedUsers <- dao.deleteAllUsers();
+        droppedFeeds <- dao.deleteAllFeeds()
       ) yield {
-        if (droppedDB) {
+        if (droppedUsers && droppedFeeds) {
           Ok("Deleted MidorI database.")
         } else {
           Ok("Failed to delete MidorI database.")

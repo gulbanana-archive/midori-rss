@@ -8,4 +8,6 @@ trait AsyncStorage {
   def getAllFeeds(user: User) : Future[Seq[Feed]]
   def createUser(user: User) : Future[Boolean]
   def createFeed(feed: Feed) : Future[Boolean]
+  def deleteAllUsers() : Future[Boolean]
+  def deleteAllFeeds() : Future[Boolean]
 }
