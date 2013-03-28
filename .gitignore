@@ -1,5 +1,7 @@
 #scala
 *.class
+/.worksheet
+/.target
 
 #play
 logs
