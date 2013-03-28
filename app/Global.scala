@@ -1,13 +1,25 @@
+import scala.concurrent.duration._
 import play.api._
+import play.api.Play.current
+import play.api.libs.concurrent.Akka
+import akka.actor._
+import actors._
 
 object Global extends GlobalSettings {
+  private var scheduledUpdate : Cancellable = null
+  private implicit val ec = scala.concurrent.ExecutionContext.global
+  
   override def onStart(app: Application) {
-    Logger.info("onStart")
+    scheduledUpdate = Akka.system.scheduler.schedule(
+      10 seconds, 5 minutes, 
+      MidorIComposer.resolveActor(classOf[FeedChecker]), 
+      "update"
+    )
   }  
   
   override def onStop(app: Application) {
-    Logger.info("onStop")
+    scheduledUpdate.cancel()
   }
   
-  override def getControllerInstance[T](clazz: Class[T]) = MidorIComposer.resolve(clazz).asInstanceOf[T]
+  override def getControllerInstance[T](clazz: Class[T]) = MidorIComposer.resolve(clazz)
 }
