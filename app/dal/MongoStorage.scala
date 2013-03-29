@@ -9,6 +9,7 @@ import play.modules.reactivemongo.PlayBsonImplicits._
 import reactivemongo.api._
 import reactivemongo.bson.handlers.DefaultBSONHandlers._
 import reactivemongo.core.commands.LastError
+import org.joda.time._
 import models._
 
 class MongoStorage extends AsyncStorage {
@@ -16,10 +17,11 @@ class MongoStorage extends AsyncStorage {
   lazy val users = db("users")
   lazy val feeds = db("feeds")
   
-  def tryGetUser() : Future[Option[User]] = {
-    val userQuery = QueryBuilder().query(
-      Json.obj("username" -> "banana")
-    )
+  def tryGetUser(username: String) : Future[Option[User]] = {
+    val userQuery = QueryBuilder()
+      .query(Json.obj(
+        "username" -> username
+      ))
     
     users
       .find[JsValue](userQuery)
@@ -28,17 +30,31 @@ class MongoStorage extends AsyncStorage {
     )
   } 
   
-  def getAllFeeds(user: User) : Future[Seq[Feed]] = {
-    val feedQuery = QueryBuilder().query(
-      Json.obj(
+  def getSubscribedFeeds(user: User) : Future[Seq[Feed]] = {
+    val feedQuery = QueryBuilder()
+      .query(Json.obj(
         "uri" -> Json.obj(
           "$in" -> new JsArray(user.subscriptions map {s => JsString(s.feed)})
-        )
-      )
-    )
+      )))
     
     feeds
       .find[JsValue](feedQuery)
+      .toList
+      .map(_.map(feed => feed.as[Feed])
+    )
+  }
+  
+  def getExpiredFeeds(at: DateTime) : Future[Seq[Feed]] = {
+    val query = QueryBuilder()
+      .query(Json.obj(
+        "nextUpdate" -> Json.obj("$lte" -> Json.toJson(at))
+      ))
+      .projection(Json.obj(
+        "entries" -> 0
+      ))
+    
+    feeds
+      .find[JsValue](query)
       .toList
       .map(_.map(feed => feed.as[Feed])
     )

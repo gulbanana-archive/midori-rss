@@ -11,7 +11,7 @@ object Global extends GlobalSettings {
   
   override def onStart(app: Application) {
     scheduledUpdate = Akka.system.scheduler.schedule(
-      10 seconds, 5 minutes, 
+      10 seconds, current.configuration.getMilliseconds("midori.checkInterval").get millis, 
       getActor(classOf[FeedChecker]), 
       "update"
     )
