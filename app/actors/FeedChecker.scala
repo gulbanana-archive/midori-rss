@@ -4,25 +4,35 @@ import scala.concurrent._
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
 import play.api._
-import akka.actor.Actor
+import akka.actor._
+import akka.pattern.pipe
 import com.sun.syndication.io._
 import org.joda.time._
+import models._
 import dal._
+
+abstract class FeedCheckerMessage
+case class CheckAll() extends FeedCheckerMessage
+case class UpdateOne(feed: Feed) extends FeedCheckerMessage
+case class UpdateMany(feeds: Seq[Feed]) extends FeedCheckerMessage
 
 class FeedChecker(dao: AsyncStorage, source: FeedSource) extends Actor {
   def receive = {
-    case "check" => update
+    case CheckAll() => checkAll
+    case UpdateOne(feed) => update(feed)
+    case UpdateMany(feeds) => feeds.map(update)
     case unknown => Logger.warn("FeedChecker received unknown message %s".format(unknown.toString))
   }
   
-  private def update {
-    Logger.info("updating feeds")
-    
-    Await.result(for(
-      feedsToCheck <- dao.getExpiredFeeds(DateTime.now)
-      //
-    ) yield {
-      Logger.info("%d feeds expired".format(feedsToCheck.size))
-    }, 15.seconds)
+  private def checkAll {
+    dao
+      .getExpiredFeeds(DateTime.now)
+      .map(UpdateMany(_))
+      .pipeTo(self)
+  }
+  
+  private def update(before: Feed) {
+    Logger.info("update %s".format(before.uri))
+    val after = source.retrieve(before.uri, before.lastUpdate)
   }
 }

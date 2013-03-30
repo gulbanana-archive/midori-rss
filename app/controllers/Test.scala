@@ -40,7 +40,8 @@ class Test(dao: AsyncStorage)  extends Controller {
 	      "MS Paint Adventures",
 	      "",
 	      new URI("http://www.mspaintadventures.com"),
-	      DateTime.now().plusDays(1),
+	      DateTime.now().minusDays(1),
+	      DateTime.now().plusMinutes(1),
 	      None
 	    )),
 	    dao.createFeed(Feed(
@@ -48,6 +49,7 @@ class Test(dao: AsyncStorage)  extends Controller {
 	      "Jon Skeet: Coding Blog",
 	      "C#, .NET, Java, software development etc\n**This is my personal blog. The views expressed on these pages are mine alone and not those of my employer.**",
 	      new URI("http://msmvps.com/blogs/jon_skeet/default.aspx"),
+	      DateTime.now().minusDays(1),
 	      DateTime.now(),
 	      Some(Seq(
 	        Entry(

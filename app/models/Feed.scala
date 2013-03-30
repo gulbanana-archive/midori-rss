@@ -11,6 +11,7 @@ case class Feed (
   title: String,
   description: String,
   link: URI,
+  lastUpdate: DateTime,
   nextUpdate: DateTime,
   entries: Option[Seq[Entry]]
 )
@@ -21,6 +22,7 @@ object Feed {
     (JsPath \ "title").format[String] and
     (JsPath \ "description").format[String] and
     (JsPath \ "link").format[URI] and
+    (JsPath \ "lastUpdate").format[DateTime] and
     (JsPath \ "nextUpdate").format[DateTime] and
     (JsPath \ "entries").formatNullable[Seq[Entry]]
   )(Feed.apply, unlift(Feed.unapply))

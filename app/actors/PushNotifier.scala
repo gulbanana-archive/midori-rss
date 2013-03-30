@@ -9,9 +9,12 @@ import com.sun.syndication.io._
 import org.joda.time._
 import dal._
 
+abstract class PushNotifierMessage
+case class Notify() extends PushNotifierMessage
+
 class PushNotifier(dao: AsyncStorage) extends Actor {
   def receive = {
-    case "notify" => update
+    case Notify() => update
     case unknown => Logger.warn("PushNotifier received unknown message %s".format(unknown.toString))
   }
   
