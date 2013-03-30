@@ -10,23 +10,30 @@ import models._
 import dal._
 
 class Test(dao: AsyncStorage)  extends Controller {
-  def delete = Action {
-    Async {
-      for (
-        droppedUsers <- dao.deleteAllUsers();
-        droppedFeeds <- dao.deleteAllFeeds()
-      ) yield {
-        if (droppedUsers && droppedFeeds) {
-          Ok("Deleted MidorI database.")
-        } else {
-          Ok("Failed to delete MidorI database.")
-        }
+  def delete = Action { Async { 
+    deleteImpl.map(Ok(_))
+  }}
+  
+  def deleteImpl = {
+    for (
+      droppedUsers <- dao.deleteAllUsers();
+      droppedFeeds <- dao.deleteAllFeeds()
+    ) yield {
+      if (droppedUsers && droppedFeeds) {
+        "Deleted MidorI database."
+      } else {
+        "Failed to delete MidorI database."
       }
     }
   }
   
   def create = Action {
-    Async {      
+    Async {
+      createImpl.map(Ok(_))
+    }
+  }
+  
+  def createImpl = {      
       val insertions = Seq(
         dao.createUser(User(
 	      "banana", 
@@ -35,21 +42,13 @@ class Test(dao: AsyncStorage)  extends Controller {
 	        Subscription(new URL("http://feeds.feedburner.com/JonSkeetCodingBlog?format=xml"), Seq())
 	      )
 	    )),
-	    dao.createFeed(Feed(
-	      new URL("http://www.mspaintadventures.com/rss/rss.xml"),
-	      "MS Paint Adventures",
-	      "",
-	      new URL("http://www.mspaintadventures.com"),
-	      DateTime.now().minusDays(1),
-	      DateTime.now().plusMinutes(1),
-	      None
-	    )),
+	    dao.createFeed(new URL("http://www.mspaintadventures.com/rss/rss.xml")),
 	    dao.createFeed(Feed(
 	      new URL("http://feeds.feedburner.com/JonSkeetCodingBlog?format=xml"),
 	      "Jon Skeet: Coding Blog",
 	      "C#, .NET, Java, software development etc\n**This is my personal blog. The views expressed on these pages are mine alone and not those of my employer.**",
 	      new URL("http://msmvps.com/blogs/jon_skeet/default.aspx"),
-	      DateTime.now().minusDays(1),
+	      DateTime.now().minusDays(200),
 	      DateTime.now(),
 	      Some(Seq(
 	        Entry(
@@ -84,18 +83,16 @@ class Test(dao: AsyncStorage)  extends Controller {
 	    ))
       )
       
-      Future.reduce(insertions) { _ && _ } map { 
-        if (_) { 
-	      Ok("Created MidorI database.")
+    Future.reduce(insertions) { _ && _ } map { 
+      if (_) { 
+	      "Created MidorI database."
 	    } else {
-	      Ok("Failed to create MidorI database.")
+	      "Failed to create MidorI database."
 	    }
-      }
     }
   }
   
-  def reset = Action { request =>
-    delete(request)
-    create(request)
-  }
+  def reset = Action { Async {
+    Future.sequence(Seq(deleteImpl, createImpl)).map(futures => Ok(futures(0) + "\n" + futures(1)))
+  }}
 }
