@@ -2,6 +2,7 @@ package dal
 
 import scala.concurrent._
 import scala.concurrent.ExecutionContext.Implicits._
+import java.net.URL
 import play.api.Play.current
 import play.api.libs.json._
 import play.modules.reactivemongo._
@@ -11,6 +12,7 @@ import reactivemongo.bson.handlers.DefaultBSONHandlers._
 import reactivemongo.core.commands.LastError
 import org.joda.time._
 import models._
+import models.JSON._
 
 class MongoStorage extends AsyncStorage {
   val db = ReactiveMongoPlugin.db
@@ -33,8 +35,8 @@ class MongoStorage extends AsyncStorage {
   def getSubscribedFeeds(user: User) : Future[Seq[Feed]] = {
     val feedQuery = QueryBuilder()
       .query(Json.obj(
-        "uri" -> Json.obj(
-          "$in" -> new JsArray(user.subscriptions map {s => JsString(s.feed)})
+        "url" -> Json.obj(
+          "$in" -> new JsArray(user.subscriptions map(sub => Json.toJson[URL](sub.feed)))
       )))
     
     feeds

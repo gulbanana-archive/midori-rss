@@ -32,7 +32,7 @@ class FeedChecker(dao: AsyncStorage, source: FeedSource) extends Actor {
   }
   
   private def update(before: Feed) {
-    Logger.info("update %s".format(before.uri))
-    val after = source.retrieve(before.uri, before.lastUpdate)
+    Logger.info("update %s".format(before.url))
+    val after = source.retrieve(before.url, before.lastUpdate)
   }
 }

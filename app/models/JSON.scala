@@ -1,6 +1,6 @@
 package models
 
-import java.net.URI
+import java.net.URL
 import play.api.libs.json._
 import play.api.libs.functional.syntax._
 import reactivemongo.bson._
@@ -15,8 +15,8 @@ object JSON {
     Writes[BSONObjectID] { id => Json.obj("$oid" -> JsString(id.stringify)) }
   )
   
-  implicit val uriFormat = Format[URI](
-    (JsPath).read[String] map {str => new URI(str)},
-    Writes[URI] { uri => JsString(uri.toString) } 
+  implicit val urlFormat = Format[URL](
+    (JsPath).read[String] map {str => new URL(str)},
+    Writes[URL] { url => JsString(url.toString) } 
   )
 }
