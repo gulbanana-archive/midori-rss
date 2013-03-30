@@ -45,6 +45,6 @@ class ROMESource extends FeedSource {
     new DateTime(item.getPublishedDate()), 
     item.getTitle(), 
     new URL(item.getLink()), 
-    item.getContents().toString()
+    Option(item.getDescription()).map(_.getValue()).getOrElse("")
   ) 
 }
