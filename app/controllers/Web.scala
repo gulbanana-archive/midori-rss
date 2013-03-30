@@ -10,7 +10,7 @@ import dal._
 import akka.actor.ActorRef
 
 class Web(dao: AsyncStorage, feedChecker: ActorRef) extends Controller {
-  implicit val timeSort = Ordering.by[DateTime,Long](date => date.getMillis)
+  implicit val timeSort = Ordering.by[DateTime,Long](date => date.getMillis).reverse
   
   def index = Action {
     Async {      
