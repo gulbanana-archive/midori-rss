@@ -92,4 +92,8 @@ class Test(dao: AsyncStorage)  extends Controller {
     }
   }
   
+  def reset = Action { request =>
+    delete(request)
+    create(request)
+  }
 }

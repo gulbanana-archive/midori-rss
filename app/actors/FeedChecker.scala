@@ -9,7 +9,7 @@ import com.sun.syndication.io._
 import org.joda.time._
 import dal._
 
-class FeedChecker(dao: AsyncStorage) extends Actor {
+class FeedChecker(dao: AsyncStorage, source: FeedSource) extends Actor {
   def receive = {
     case "check" => update
     case unknown => Logger.warn("FeedChecker received unknown message %s".format(unknown.toString))
@@ -23,6 +23,6 @@ class FeedChecker(dao: AsyncStorage) extends Actor {
       //
     ) yield {
       Logger.info("%d feeds expired".format(feedsToCheck.size))
-    }, 15 seconds)
+    }, 15.seconds)
   }
 }
