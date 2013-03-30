@@ -15,12 +15,15 @@ abstract class FeedCheckerMessage
 case class CheckAll() extends FeedCheckerMessage
 case class UpdateOne(feed: Feed) extends FeedCheckerMessage
 case class UpdateMany(feeds: Seq[Feed]) extends FeedCheckerMessage
+case class UpdateStatus(feed: Feed, success: Boolean) extends FeedCheckerMessage
 
 class FeedChecker(dao: AsyncStorage, source: FeedSource) extends Actor {
   def receive = {
     case CheckAll() => checkAll
     case UpdateOne(feed) => update(feed)
     case UpdateMany(feeds) => feeds.map(update)
+    case UpdateStatus(feed, true) => Logger.info("'%s' updated".format(feed.title))
+    case UpdateStatus(feed, false) => Logger.warn("'%s' update failed".format(feed.title))
     case unknown => Logger.warn("FeedChecker received unknown message %s".format(unknown.toString))
   }
   
@@ -32,7 +35,9 @@ class FeedChecker(dao: AsyncStorage, source: FeedSource) extends Actor {
   }
   
   private def update(before: Feed) {
-    Logger.info("update %s".format(before.url))
-    val after = source.retrieve(before.url, before.lastUpdate)
+    for (feed <- source.retrieve(before.url, before.lastUpdate)) yield dao
+      .updateFeed(feed)
+      .map(UpdateStatus(feed, _))
+      .pipeTo(self)
   }
 }
