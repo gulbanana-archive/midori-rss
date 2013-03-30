@@ -1,4 +1,4 @@
 MidorI: Feed aggregator with a web API
 ======================================
-
-usage: implement the code, then run it
+usage: "play run", "play start" or "play stage", then navigate to the Netty URL.
+license: GPLv3
