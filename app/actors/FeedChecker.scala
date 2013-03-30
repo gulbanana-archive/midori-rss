@@ -11,8 +11,8 @@ import dal._
 
 class FeedChecker(dao: AsyncStorage) extends Actor {
   def receive = {
-    case "update" => update
-    case unknown => Logger.warn("received unknown message %s".format(unknown.toString))
+    case "check" => update
+    case unknown => Logger.warn("FeedChecker received unknown message %s".format(unknown.toString))
   }
   
   private def update {

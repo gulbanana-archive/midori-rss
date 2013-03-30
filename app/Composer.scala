@@ -13,7 +13,8 @@ object MidorIComposer extends Composer {
   ) 
   
   override val factories = Map[Class[_], () => AnyRef](
-      classOf[FeedChecker] -> (() => new FeedChecker(db))
+      classOf[FeedChecker] -> (() => new FeedChecker(db)),
+      classOf[PushNotifier] -> (() => new PushNotifier(db))
   )
 }
 
