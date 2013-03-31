@@ -46,7 +46,7 @@ trait MongoDAOComponent extends DAOComponent {
         "subscriptions.feed" -> item.feed.url
       ) 
       val update = Json.obj("$addToSet" -> Json.obj(
-        "subscriptions.$.entries" -> item.entry.id
+        "subscriptions.$.entries" -> item.entry.link
       ))
       
       users
@@ -60,7 +60,7 @@ trait MongoDAOComponent extends DAOComponent {
         "subscriptions.feed" -> item.feed.url
       ) 
       val update = Json.obj("$pull" -> Json.obj(
-        "subscriptions.$.entries" -> item.entry.id
+        "subscriptions.$.entries" -> item.entry.link
       ))
       
       users

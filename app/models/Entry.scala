@@ -7,7 +7,6 @@ import org.joda.time.DateTime
 import JSON._
 
 case class Entry (
-  id: String,    //this is the id in the external rss
   posted: DateTime,
   title: String,
   link: URL,
@@ -16,7 +15,6 @@ case class Entry (
 
 object Entry {
   implicit val jsonFormat = (
-    (JsPath \ "id").format[String] and
     (JsPath \ "posted").format[DateTime] and
     (JsPath \ "title").format[String] and
     (JsPath \ "link").format[URL] and

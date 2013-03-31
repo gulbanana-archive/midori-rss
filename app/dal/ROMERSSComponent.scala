@@ -44,7 +44,6 @@ trait ROMERSSComponent extends RSSComponent {
     }
     
     private def asEntry(item: SyndEntry) = Entry(
-      item.getUri(),
       new DateTime(item.getPublishedDate()), 
       item.getTitle(), 
       new URL(item.getLink()), 
