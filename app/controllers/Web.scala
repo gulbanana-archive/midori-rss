@@ -15,7 +15,10 @@ class Web extends Controller { this: DAOComponent with ActorComponent with Authe
   def index = Action { 
     Async { 
       Authenticated { implicit user => 
-        for (items <- paginatedItems(0, pageSize)) yield Ok(views.html.index(user,items))
+        for (
+          items <- paginatedItems(0, pageSize);
+          marked <- markRead(items)
+        ) yield Ok(views.html.index(user,items))
       }
     }
   }
@@ -24,7 +27,10 @@ class Web extends Controller { this: DAOComponent with ActorComponent with Authe
     request.body.validate[Int].map {
       case start => Async { 
         Authenticated { implicit user => 
-          for (items <- paginatedItems(start, pageSize)) yield Ok(views.html.items(items))
+          for (
+            items <- paginatedItems(start, pageSize);
+            marked <- markRead(items)
+          ) yield Ok(views.html.items(items))
         }
       } 
     }.recoverTotal { error =>
@@ -38,4 +44,8 @@ class Web extends Controller { this: DAOComponent with ActorComponent with Authe
     .sorted(Ordering.by[Item,Long](item => item.entry.posted.getMillis).reverse)
     .drop(skip)
     .take(take)
+    
+  private def markRead(items: Seq[Item])(implicit user: User) = Future
+    .traverse(items.filter(item => !item.read))(item => dao.markRead(user, item))
+    .map(futures => futures.fold(true)(_ && _))
 }

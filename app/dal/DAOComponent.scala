@@ -10,6 +10,8 @@ trait DAOComponent {
   trait AsyncDAO {
     def createUser(user: User) : Future[Boolean]
     def tryGetUser(username: String) : Future[Option[User]]
+    def markRead(user: User, item: Item) : Future[Boolean]
+    def markUnread(user: User, item: Item) : Future[Boolean]
     def deleteAllUsers() : Future[Boolean]
   
     def createFeed(feed: Feed) : Future[Boolean]

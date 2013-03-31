@@ -40,6 +40,35 @@ trait MongoDAOComponent extends DAOComponent {
       )
     } 
     
+    def markRead(user: User, item: Item) : Future[Boolean] = {
+      val selector = Json.obj(
+        "username" -> user.username,
+        "subscriptions.feed" -> item.feed.url
+      ) 
+      val update = Json.obj("$addToSet" -> Json.obj(
+        "subscriptions.$.entries" -> item.entry.id
+      ))
+      
+      users
+        .update(selector, update)
+        .map(checkError)
+    }
+    
+    def markUnread(user: User, item: Item) : Future[Boolean] = {
+      val selector = Json.obj(
+        "username" -> user.username,
+        "subscriptions.feed" -> item.feed.url
+      ) 
+      val update = Json.obj("$pull" -> Json.obj(
+        "subscriptions.$.entries" -> item.entry.id
+      ))
+      
+      users
+        .update(selector, update)
+        .map(checkError)
+    }
+    
+    
     def deleteAllUsers() = users.drop()
     
     /*******************

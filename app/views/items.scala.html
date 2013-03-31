@@ -1,7 +1,11 @@
 @(items: Seq[Item])
 
 @for(item <- items) {
-  <div class="item">
+  <div class="item @if(item.read) {
+                      read
+                    } else {
+                      unread
+                    }">
     <div style="overflow: auto;">
       <div style="float: left;"><h3><a href="@item.entry.link">@item.entry.title</a><h3></div>
       <div style="float: right; text-align: right;">
