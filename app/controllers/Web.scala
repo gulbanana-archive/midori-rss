@@ -24,6 +24,7 @@ class Web(dao: AsyncStorage, feedChecker: ActorRef) extends Controller {
             .filter(feed => feed.entries.isDefined)
             .flatMap(feed => feed.entries.get.map(entry => (entry, feed)))
             .sorted(Ordering.by[(Entry,Feed),DateTime](item => item._1.posted))
+            .take(20)
         ))
       }
     }
