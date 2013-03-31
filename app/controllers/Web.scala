@@ -10,23 +10,32 @@ import dal._
 import actors._
 
 class Web extends Controller { this: DAOComponent with ActorComponent with Authenticator => 
-  implicit val timeSort = Ordering.by[DateTime,Long](date => date.getMillis).reverse
+  private val pageSize = 15
   
-  def index = Authenticated { implicit user => 
-    paginatedItems(0, 20)
+  def index = Action { 
+    Async { 
+      Authenticated { implicit user => 
+        for (items <- paginatedItems(0, pageSize)) yield Ok(views.html.index(user,items))
+      }
+    }
   }
   
-  private def paginatedItems(skip: Int, take: Int)(implicit user: User) = for (
-    feeds <- dao.getSubscribedFeeds(user)
-  ) yield {
-    Ok(views.html.index(
-      user, 
-      feeds
-        .filter(feed => feed.entries.isDefined)
-        .flatMap(feed => feed.entries.get.map(entry => Item(entry, feed, user.subscriptions.flatMap(_.entries).contains(entry.id))))
-        .sorted(Ordering.by[Item,DateTime](item => item.entry.posted))
-        .drop(skip)
-        .take(take)
-    ))
+  def more = Action(parse.json) { request =>
+    request.body.validate[Int].map {
+      case start => Async { 
+        Authenticated { implicit user => 
+          for (items <- paginatedItems(start, pageSize)) yield Ok(views.html.items(items))
+        }
+      } 
+    }.recoverTotal { error =>
+      BadRequest("Invalid request body.")
+    }
   }
+  
+  private def paginatedItems(skip: Int, take: Int)(implicit user: User) = for (feeds <- dao.getSubscribedFeeds(user)) yield feeds
+    .filter(feed => feed.entries.isDefined)
+    .flatMap(feed => feed.entries.get.map(entry => Item(entry, feed, user.subscriptions.flatMap(_.entries).contains(entry.id))))
+    .sorted(Ordering.by[Item,Long](item => item.entry.posted.getMillis).reverse)
+    .drop(skip)
+    .take(take)
 }

@@ -2,5 +2,10 @@
 
 @main("MidorI Feed") {
   <h1>@{user.username}'s news</h1>
-  <div>@items(userItems)</div>
+  <div id="items">
+    @items(userItems)
+    <div id="more">
+      <center><img src="@routes.Assets.at("images/loading.gif")" /></center>
+    </div>
+  </div>
 }

@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                           @controllers.Web.index
+POST    /more                       @controllers.Web.more
 
 # Test stuff
 GET     /test/create                @controllers.Test.create
