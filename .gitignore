@@ -12,7 +12,7 @@ tmp
 .history
 dist
 bin
-prod.conf
+conf/prod.conf
 
 #intellij
 /.idea
