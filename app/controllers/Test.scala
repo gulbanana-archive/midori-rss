@@ -9,7 +9,7 @@ import org.joda.time._
 import models._
 import dal._
 
-class Test(dao: AsyncStorage)  extends Controller {
+class Test extends Controller { this: DAOComponent =>
   def delete = Action { Async { 
     deleteImpl.map(Ok(_))
   }}

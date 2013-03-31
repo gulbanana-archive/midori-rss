@@ -1,0 +1,16 @@
+@(items: Seq[Item])
+
+@for(item <- items) {
+  <div class="item">
+    <div style="overflow: auto;">
+      <div style="float: left;"><h3><a href="@item.entry.link">@item.entry.title</a><h3></div>
+      <div style="float: right; text-align: right;">
+        <h4> 
+          [<a href="@item.feed.link">@item.feed.title</a>]<br/>
+          <small>@org.joda.time.format.DateTimeFormat.mediumDateTime.print(item.entry.posted)</small>
+        </h4>
+      </div>
+    </div>
+    <p>@Html(item.entry.content)</p>
+  </div>
+}

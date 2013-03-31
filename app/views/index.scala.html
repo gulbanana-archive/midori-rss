@@ -1,10 +1,6 @@
-@(user: User, entries: Seq[(Entry, Feed)])
+@(user: User, userItems: Seq[Item])
 
 @main("MidorI Feed") {
   <h1>@{user.username}'s news</h1>
-  <div>
-    @for(e <- entries) {
-      @entry(e._1, e._2)
-    }
-  </div>
+  <div>@items(userItems)</div>
 }

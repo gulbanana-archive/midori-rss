@@ -12,7 +12,7 @@ import dal._
 abstract class PushNotifierMessage
 case class Notify() extends PushNotifierMessage
 
-class PushNotifier(dao: AsyncStorage) extends Actor {
+class PushNotifier extends Actor { this: DAOComponent =>
   def receive = {
     case Notify() => update
     case unknown => Logger.warn("PushNotifier received unknown message %s".format(unknown.toString))

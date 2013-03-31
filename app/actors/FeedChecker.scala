@@ -17,7 +17,7 @@ case class UpdateOne(feed: Feed) extends FeedCheckerMessage
 case class UpdateMany(feeds: Seq[Feed]) extends FeedCheckerMessage
 case class UpdateStatus(feed: Feed, success: Boolean) extends FeedCheckerMessage
 
-class FeedChecker(dao: AsyncStorage, source: FeedSource) extends Actor {
+class FeedChecker extends Actor { this: RSSComponent with DAOComponent =>
   def receive = {
     case CheckAll() => checkAll
     case UpdateOne(feed) => update(feed)
