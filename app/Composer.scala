@@ -8,6 +8,7 @@ import rss._
 import push._
 import controllers._
 import actors._
+import rss.ROMERSSComponent
 
 object Composer extends ReflectiveFactory {
   private val _checker = Akka.system.actorOf(Props(new FeedChecker with MongoDAOComponent with ROMERSSComponent), "checker")

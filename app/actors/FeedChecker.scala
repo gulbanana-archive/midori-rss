@@ -10,6 +10,7 @@ import com.sun.syndication.io._
 import org.joda.time._
 import models._
 import dal._
+import rss._
 
 abstract class FeedCheckerMessage
 case class CheckAll() extends FeedCheckerMessage

@@ -1,6 +1,6 @@
-package dal
+package rss
 
-import scala.collection.JavaConversions.asScalaBuffer
+import scala.collection.JavaConversions._
 import java.net.URL
 import play.api._
 import com.sun.syndication.io._

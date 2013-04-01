@@ -1,4 +1,4 @@
-package dal
+package rss
 
 import java.net.URL
 import org.joda.time._
