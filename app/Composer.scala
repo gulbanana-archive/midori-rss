@@ -4,12 +4,14 @@ import play.api.libs.concurrent.Akka
 import akka.actor._
 import ioc._
 import dal._
+import rss._
+import push._
 import controllers._
 import actors._
 
 object Composer extends ReflectiveFactory {
   private val _checker = Akka.system.actorOf(Props(new FeedChecker with MongoDAOComponent with ROMERSSComponent), "checker")
-  private val _notifier = Akka.system.actorOf(Props(new PushNotifier with MongoDAOComponent), "notifier")
+  private val _notifier = Akka.system.actorOf(Props(new PushNotifier with MongoDAOComponent with ApplePushComponent), "notifier")
   private trait Actors extends ActorComponent {
     val checker = _checker
     val notifier = _notifier
