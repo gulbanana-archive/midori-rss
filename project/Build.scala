@@ -9,11 +9,11 @@ object ApplicationBuild extends Build {
 
   val appDependencies = Seq(
     //"com.google.inject" % "guice" % "3.0",
-    "rome" % "rome" % "1.0",
+    //"rome" % "rome" % "1.0",
     "rome" % "rome-fetcher" % "1.0",
-    "org.reactivemongo" %% "play2-reactivemongo" % "0.8"
+    "org.reactivemongo" %% "play2-reactivemongo" % "0.8",
+    "org.mindrot" % "jbcrypt" % "0.3m"
   )
-
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
     // Add your own project settings here      
