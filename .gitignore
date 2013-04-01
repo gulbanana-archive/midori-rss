@@ -1,29 +1,25 @@
-#scala
+# scala
 *.class
-/.worksheet
-/.target
 
-#play
+# sbt
+.target
+
+# play
 logs
 project/project
 project/target
 target
 tmp
-.history
 dist
 bin
 conf/prod.conf
-
-#intellij
-/.idea
-/*.iml
-/out
-/.idea_modules
-/RUNNING_PID
-
+RUNNING_PID
 
 # eclipse
-/.cache
-/.classpath
-/.project
-/.settings
+.cache
+.classpath
+.project
+.settings
+.history
+
+# xcode
