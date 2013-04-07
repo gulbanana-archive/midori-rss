@@ -27,13 +27,13 @@
 
 - (void)markRead:(NewsItem*)item
 {
-    [NSThread sleepForTimeInterval:0.5];
+    [NSThread sleepForTimeInterval:1.5];
     item.read = YES;
 }
 
 - (void)markUnread:(NewsItem*)item
 {
-    [NSThread sleepForTimeInterval:0.5];
+    [NSThread sleepForTimeInterval:1.5];
     item.read = NO;
 }
 

@@ -57,6 +57,7 @@
 {
     [super viewDidLoad];
     
+    self.editButtonItem.title = @"Mark";
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     self.detailViewController = (ItemDetailController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged]; //works around a bug
@@ -124,16 +125,26 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //return [_items[indexPath.row] read];
     return YES;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_items removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        NewsItem* item = _items[indexPath.row];
+        dispatch_async(_defaultQueue, ^(){
+            if (item.read)
+                [_service markUnread:item];
+            else
+                [_service markRead:item];
+            
+            dispatch_async(_mainQueue, ^(){
+                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            });
+        });
+
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
 
@@ -144,7 +155,8 @@
         [_service markRead:item];
         dispatch_async(_mainQueue, ^(){
             [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+                [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         });
     });
     
@@ -154,5 +166,30 @@
         [self performSegueWithIdentifier:@"showDetail" sender:self];
     }
 }
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+    
+    if (editing)
+    {
+        self.editButtonItem.title = NSLocalizedString(@"Cancel", @"Cancel");
+    }
+    else
+    {
+        self.editButtonItem.title = NSLocalizedString(@"Mark", @"Mark");
+    }
+}
+
+
+- (NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NewsItem* item = _items[indexPath.row];
+    if (item.read)
+        return @"Mark unread";
+    else
+        return @"Mark read";
+}
+
 
 @end
