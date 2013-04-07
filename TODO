@@ -4,3 +4,7 @@ ios client
 push notifications
 improve favicon
 figure out a way to make client available - test cert thing?
+uniform treatment of description/undescribed items
+single-page with preloaded content?
+websocket push
+fix bug with repeated content on ajax load

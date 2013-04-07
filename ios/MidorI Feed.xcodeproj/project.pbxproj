@@ -18,13 +18,16 @@
 		E597583A17114CD800695DAD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E597583917114CD800695DAD /* Default-568h@2x.png */; };
 		E597583D17114CD800695DAD /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E597583B17114CD800695DAD /* MainStoryboard_iPhone.storyboard */; };
 		E597584017114CD800695DAD /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E597583E17114CD800695DAD /* MainStoryboard_iPad.storyboard */; };
-		E597584317114CD800695DAD /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E597584217114CD800695DAD /* MasterViewController.m */; };
-		E597584617114CD900695DAD /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E597584517114CD900695DAD /* DetailViewController.m */; };
+		E597584317114CD800695DAD /* ItemListController.m in Sources */ = {isa = PBXBuildFile; fileRef = E597584217114CD800695DAD /* ItemListController.m */; };
+		E597584617114CD900695DAD /* ItemDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E597584517114CD900695DAD /* ItemDetailController.m */; };
 		E597584E17114CD900695DAD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E597584D17114CD900695DAD /* SenTestingKit.framework */; };
 		E597584F17114CD900695DAD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E597582317114CD800695DAD /* UIKit.framework */; };
 		E597585017114CD900695DAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E597582517114CD800695DAD /* Foundation.framework */; };
 		E597585817114CD900695DAD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E597585617114CD900695DAD /* InfoPlist.strings */; };
 		E597585B17114CD900695DAD /* MidorITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E597585A17114CD900695DAD /* MidorITests.m */; };
+		E59961311711BE9200E194BA /* NewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E59961301711BE9200E194BA /* NewsItem.m */; };
+		E59961341711C6A200E194BA /* FeedService.m in Sources */ = {isa = PBXBuildFile; fileRef = E59961331711C6A200E194BA /* FeedService.m */; };
+		E59961371711CD0E00E194BA /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E59961361711CD0E00E194BA /* ItemCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,16 +56,22 @@
 		E597583917114CD800695DAD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E597583C17114CD800695DAD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		E597583F17114CD800695DAD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		E597584117114CD800695DAD /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		E597584217114CD800695DAD /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		E597584417114CD800695DAD /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		E597584517114CD900695DAD /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		E597584117114CD800695DAD /* ItemListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemListController.h; sourceTree = "<group>"; };
+		E597584217114CD800695DAD /* ItemListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemListController.m; sourceTree = "<group>"; };
+		E597584417114CD800695DAD /* ItemDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemDetailController.h; sourceTree = "<group>"; };
+		E597584517114CD900695DAD /* ItemDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemDetailController.m; sourceTree = "<group>"; };
 		E597584C17114CD900695DAD /* MidorITests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MidorITests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E597584D17114CD900695DAD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		E597585517114CD900695DAD /* MidorITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MidorITests-Info.plist"; sourceTree = "<group>"; };
 		E597585717114CD900695DAD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E597585917114CD900695DAD /* MidorITests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MidorITests.h; sourceTree = "<group>"; };
 		E597585A17114CD900695DAD /* MidorITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MidorITests.m; sourceTree = "<group>"; };
+		E599612F1711BE9200E194BA /* NewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsItem.h; sourceTree = "<group>"; };
+		E59961301711BE9200E194BA /* NewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsItem.m; sourceTree = "<group>"; };
+		E59961321711C6A200E194BA /* FeedService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedService.h; sourceTree = "<group>"; };
+		E59961331711C6A200E194BA /* FeedService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedService.m; sourceTree = "<group>"; };
+		E59961351711CD0E00E194BA /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
+		E59961361711CD0E00E194BA /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,20 +131,15 @@
 		E597582917114CD800695DAD /* MidorI */ = {
 			isa = PBXGroup;
 			children = (
-				E597583217114CD800695DAD /* AppDelegate.h */,
-				E597583317114CD800695DAD /* AppDelegate.m */,
-				E597583B17114CD800695DAD /* MainStoryboard_iPhone.storyboard */,
-				E597583E17114CD800695DAD /* MainStoryboard_iPad.storyboard */,
-				E597584117114CD800695DAD /* MasterViewController.h */,
-				E597584217114CD800695DAD /* MasterViewController.m */,
-				E597584417114CD800695DAD /* DetailViewController.h */,
-				E597584517114CD900695DAD /* DetailViewController.m */,
-				E597582A17114CD800695DAD /* Supporting Files */,
+				E599612E1711BDF700E194BA /* Views */,
+				E599612D1711BDEF00E194BA /* Models */,
+				E599612C1711BD5700E194BA /* Controllers */,
+				E597582A17114CD800695DAD /* Assets */,
 			);
 			path = MidorI;
 			sourceTree = "<group>";
 		};
-		E597582A17114CD800695DAD /* Supporting Files */ = {
+		E597582A17114CD800695DAD /* Assets */ = {
 			isa = PBXGroup;
 			children = (
 				E597582B17114CD800695DAD /* MidorI-Info.plist */,
@@ -146,7 +150,7 @@
 				E597583717114CD800695DAD /* Default@2x.png */,
 				E597583917114CD800695DAD /* Default-568h@2x.png */,
 			);
-			name = "Supporting Files";
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		E597585317114CD900695DAD /* MidorITests */ = {
@@ -166,6 +170,41 @@
 				E597585617114CD900695DAD /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E599612C1711BD5700E194BA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E597583217114CD800695DAD /* AppDelegate.h */,
+				E597583317114CD800695DAD /* AppDelegate.m */,
+				E597584117114CD800695DAD /* ItemListController.h */,
+				E597584217114CD800695DAD /* ItemListController.m */,
+				E597584417114CD800695DAD /* ItemDetailController.h */,
+				E597584517114CD900695DAD /* ItemDetailController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		E599612D1711BDEF00E194BA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E599612F1711BE9200E194BA /* NewsItem.h */,
+				E59961301711BE9200E194BA /* NewsItem.m */,
+				E59961321711C6A200E194BA /* FeedService.h */,
+				E59961331711C6A200E194BA /* FeedService.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		E599612E1711BDF700E194BA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E597583B17114CD800695DAD /* MainStoryboard_iPhone.storyboard */,
+				E597583E17114CD800695DAD /* MainStoryboard_iPad.storyboard */,
+				E59961351711CD0E00E194BA /* ItemCell.h */,
+				E59961361711CD0E00E194BA /* ItemCell.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,7 +255,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Thomas Castiglione";
 			};
-			buildConfigurationList = E597581B17114CD800695DAD /* Build configuration list for PBXProject "MidorI" */;
+			buildConfigurationList = E597581B17114CD800695DAD /* Build configuration list for PBXProject "MidorI Feed" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -281,8 +320,11 @@
 			files = (
 				E597583017114CD800695DAD /* main.m in Sources */,
 				E597583417114CD800695DAD /* AppDelegate.m in Sources */,
-				E597584317114CD800695DAD /* MasterViewController.m in Sources */,
-				E597584617114CD900695DAD /* DetailViewController.m in Sources */,
+				E597584317114CD800695DAD /* ItemListController.m in Sources */,
+				E597584617114CD900695DAD /* ItemDetailController.m in Sources */,
+				E59961311711BE9200E194BA /* NewsItem.m in Sources */,
+				E59961341711C6A200E194BA /* FeedService.m in Sources */,
+				E59961371711CD0E00E194BA /* ItemCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,7 +503,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E597581B17114CD800695DAD /* Build configuration list for PBXProject "MidorI" */ = {
+		E597581B17114CD800695DAD /* Build configuration list for PBXProject "MidorI Feed" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E597585C17114CD900695DAD /* Debug */,
