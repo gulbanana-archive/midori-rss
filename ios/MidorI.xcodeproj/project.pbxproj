@@ -1,0 +1,492 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E597582417114CD800695DAD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E597582317114CD800695DAD /* UIKit.framework */; };
+		E597582617114CD800695DAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E597582517114CD800695DAD /* Foundation.framework */; };
+		E597582817114CD800695DAD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E597582717114CD800695DAD /* CoreGraphics.framework */; };
+		E597582E17114CD800695DAD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E597582C17114CD800695DAD /* InfoPlist.strings */; };
+		E597583017114CD800695DAD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E597582F17114CD800695DAD /* main.m */; };
+		E597583417114CD800695DAD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E597583317114CD800695DAD /* AppDelegate.m */; };
+		E597583617114CD800695DAD /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E597583517114CD800695DAD /* Default.png */; };
+		E597583817114CD800695DAD /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E597583717114CD800695DAD /* Default@2x.png */; };
+		E597583A17114CD800695DAD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E597583917114CD800695DAD /* Default-568h@2x.png */; };
+		E597583D17114CD800695DAD /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E597583B17114CD800695DAD /* MainStoryboard_iPhone.storyboard */; };
+		E597584017114CD800695DAD /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E597583E17114CD800695DAD /* MainStoryboard_iPad.storyboard */; };
+		E597584317114CD800695DAD /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E597584217114CD800695DAD /* MasterViewController.m */; };
+		E597584617114CD900695DAD /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E597584517114CD900695DAD /* DetailViewController.m */; };
+		E597584E17114CD900695DAD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E597584D17114CD900695DAD /* SenTestingKit.framework */; };
+		E597584F17114CD900695DAD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E597582317114CD800695DAD /* UIKit.framework */; };
+		E597585017114CD900695DAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E597582517114CD800695DAD /* Foundation.framework */; };
+		E597585817114CD900695DAD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E597585617114CD900695DAD /* InfoPlist.strings */; };
+		E597585B17114CD900695DAD /* MidorITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E597585A17114CD900695DAD /* MidorITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E597585117114CD900695DAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E597581817114CD800695DAD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E597581F17114CD800695DAD;
+			remoteInfo = MidorI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E597582017114CD800695DAD /* MidorI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MidorI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E597582317114CD800695DAD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E597582517114CD800695DAD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E597582717114CD800695DAD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E597582B17114CD800695DAD /* MidorI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MidorI-Info.plist"; sourceTree = "<group>"; };
+		E597582D17114CD800695DAD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E597582F17114CD800695DAD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E597583117114CD800695DAD /* MidorI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MidorI-Prefix.pch"; sourceTree = "<group>"; };
+		E597583217114CD800695DAD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E597583317114CD800695DAD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E597583517114CD800695DAD /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		E597583717114CD800695DAD /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		E597583917114CD800695DAD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E597583C17114CD800695DAD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		E597583F17114CD800695DAD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		E597584117114CD800695DAD /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		E597584217114CD800695DAD /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		E597584417114CD800695DAD /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		E597584517114CD900695DAD /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		E597584C17114CD900695DAD /* MidorITests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MidorITests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E597584D17114CD900695DAD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		E597585517114CD900695DAD /* MidorITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MidorITests-Info.plist"; sourceTree = "<group>"; };
+		E597585717114CD900695DAD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E597585917114CD900695DAD /* MidorITests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MidorITests.h; sourceTree = "<group>"; };
+		E597585A17114CD900695DAD /* MidorITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MidorITests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E597581D17114CD800695DAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E597582417114CD800695DAD /* UIKit.framework in Frameworks */,
+				E597582617114CD800695DAD /* Foundation.framework in Frameworks */,
+				E597582817114CD800695DAD /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E597584817114CD900695DAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E597584E17114CD900695DAD /* SenTestingKit.framework in Frameworks */,
+				E597584F17114CD900695DAD /* UIKit.framework in Frameworks */,
+				E597585017114CD900695DAD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E597581717114CD800695DAD = {
+			isa = PBXGroup;
+			children = (
+				E597582917114CD800695DAD /* MidorI */,
+				E597585317114CD900695DAD /* MidorITests */,
+				E597582217114CD800695DAD /* Frameworks */,
+				E597582117114CD800695DAD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E597582117114CD800695DAD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E597582017114CD800695DAD /* MidorI.app */,
+				E597584C17114CD900695DAD /* MidorITests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E597582217114CD800695DAD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E597582317114CD800695DAD /* UIKit.framework */,
+				E597582517114CD800695DAD /* Foundation.framework */,
+				E597582717114CD800695DAD /* CoreGraphics.framework */,
+				E597584D17114CD900695DAD /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E597582917114CD800695DAD /* MidorI */ = {
+			isa = PBXGroup;
+			children = (
+				E597583217114CD800695DAD /* AppDelegate.h */,
+				E597583317114CD800695DAD /* AppDelegate.m */,
+				E597583B17114CD800695DAD /* MainStoryboard_iPhone.storyboard */,
+				E597583E17114CD800695DAD /* MainStoryboard_iPad.storyboard */,
+				E597584117114CD800695DAD /* MasterViewController.h */,
+				E597584217114CD800695DAD /* MasterViewController.m */,
+				E597584417114CD800695DAD /* DetailViewController.h */,
+				E597584517114CD900695DAD /* DetailViewController.m */,
+				E597582A17114CD800695DAD /* Supporting Files */,
+			);
+			path = MidorI;
+			sourceTree = "<group>";
+		};
+		E597582A17114CD800695DAD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E597582B17114CD800695DAD /* MidorI-Info.plist */,
+				E597582C17114CD800695DAD /* InfoPlist.strings */,
+				E597582F17114CD800695DAD /* main.m */,
+				E597583117114CD800695DAD /* MidorI-Prefix.pch */,
+				E597583517114CD800695DAD /* Default.png */,
+				E597583717114CD800695DAD /* Default@2x.png */,
+				E597583917114CD800695DAD /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E597585317114CD900695DAD /* MidorITests */ = {
+			isa = PBXGroup;
+			children = (
+				E597585917114CD900695DAD /* MidorITests.h */,
+				E597585A17114CD900695DAD /* MidorITests.m */,
+				E597585417114CD900695DAD /* Supporting Files */,
+			);
+			path = MidorITests;
+			sourceTree = "<group>";
+		};
+		E597585417114CD900695DAD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E597585517114CD900695DAD /* MidorITests-Info.plist */,
+				E597585617114CD900695DAD /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E597581F17114CD800695DAD /* MidorI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E597585E17114CD900695DAD /* Build configuration list for PBXNativeTarget "MidorI" */;
+			buildPhases = (
+				E597581C17114CD800695DAD /* Sources */,
+				E597581D17114CD800695DAD /* Frameworks */,
+				E597581E17114CD800695DAD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MidorI;
+			productName = MidorI;
+			productReference = E597582017114CD800695DAD /* MidorI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E597584B17114CD900695DAD /* MidorITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E597586117114CD900695DAD /* Build configuration list for PBXNativeTarget "MidorITests" */;
+			buildPhases = (
+				E597584717114CD900695DAD /* Sources */,
+				E597584817114CD900695DAD /* Frameworks */,
+				E597584917114CD900695DAD /* Resources */,
+				E597584A17114CD900695DAD /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E597585217114CD900695DAD /* PBXTargetDependency */,
+			);
+			name = MidorITests;
+			productName = MidorITests;
+			productReference = E597584C17114CD900695DAD /* MidorITests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E597581817114CD800695DAD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Thomas Castiglione";
+			};
+			buildConfigurationList = E597581B17114CD800695DAD /* Build configuration list for PBXProject "MidorI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E597581717114CD800695DAD;
+			productRefGroup = E597582117114CD800695DAD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E597581F17114CD800695DAD /* MidorI */,
+				E597584B17114CD900695DAD /* MidorITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E597581E17114CD800695DAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E597582E17114CD800695DAD /* InfoPlist.strings in Resources */,
+				E597583617114CD800695DAD /* Default.png in Resources */,
+				E597583817114CD800695DAD /* Default@2x.png in Resources */,
+				E597583A17114CD800695DAD /* Default-568h@2x.png in Resources */,
+				E597583D17114CD800695DAD /* MainStoryboard_iPhone.storyboard in Resources */,
+				E597584017114CD800695DAD /* MainStoryboard_iPad.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E597584917114CD900695DAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E597585817114CD900695DAD /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E597584A17114CD900695DAD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E597581C17114CD800695DAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E597583017114CD800695DAD /* main.m in Sources */,
+				E597583417114CD800695DAD /* AppDelegate.m in Sources */,
+				E597584317114CD800695DAD /* MasterViewController.m in Sources */,
+				E597584617114CD900695DAD /* DetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E597584717114CD900695DAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E597585B17114CD900695DAD /* MidorITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E597585217114CD900695DAD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E597581F17114CD800695DAD /* MidorI */;
+			targetProxy = E597585117114CD900695DAD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E597582C17114CD800695DAD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E597582D17114CD800695DAD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E597583B17114CD800695DAD /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E597583C17114CD800695DAD /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		E597583E17114CD800695DAD /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E597583F17114CD800695DAD /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		E597585617114CD900695DAD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E597585717114CD900695DAD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E597585C17114CD900695DAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E597585D17114CD900695DAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E597585F17114CD900695DAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MidorI/MidorI-Prefix.pch";
+				INFOPLIST_FILE = "MidorI/MidorI-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E597586017114CD900695DAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MidorI/MidorI-Prefix.pch";
+				INFOPLIST_FILE = "MidorI/MidorI-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E597586217114CD900695DAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MidorI.app/MidorI";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MidorI/MidorI-Prefix.pch";
+				INFOPLIST_FILE = "MidorITests/MidorITests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		E597586317114CD900695DAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MidorI.app/MidorI";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MidorI/MidorI-Prefix.pch";
+				INFOPLIST_FILE = "MidorITests/MidorITests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E597581B17114CD800695DAD /* Build configuration list for PBXProject "MidorI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E597585C17114CD900695DAD /* Debug */,
+				E597585D17114CD900695DAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E597585E17114CD900695DAD /* Build configuration list for PBXNativeTarget "MidorI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E597585F17114CD900695DAD /* Debug */,
+				E597586017114CD900695DAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E597586117114CD900695DAD /* Build configuration list for PBXNativeTarget "MidorITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E597586217114CD900695DAD /* Debug */,
+				E597586317114CD900695DAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E597581817114CD800695DAD /* Project object */;
+}
