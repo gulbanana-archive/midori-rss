@@ -7,10 +7,12 @@
 @interface ItemListController () {
     NSMutableArray* _items;
     FeedService* _service;
+    dispatch_queue_t _mainQueue;
+    dispatch_queue_t _defaultQueue;
 }
 - (IBAction)refresh:(id)sender;
 - (void)initFeeds;
-- (void)updateFeeds;
+- (NSMutableArray*)updateFeeds;
 @end
 
 @implementation ItemListController
@@ -19,10 +21,11 @@
 {
     _items = [[NSMutableArray alloc] init];
     _service = [[FeedService alloc] init];
-    [self refresh:self];
+    _mainQueue = dispatch_get_main_queue();
+    _defaultQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 }
 
-- (void)updateFeeds
+- (NSMutableArray*)updateFeeds
 {
     NSArray* news = [_service retrieveNews];
     
@@ -33,8 +36,7 @@
         [paths insertObject:[NSIndexPath indexPathForRow:i inSection:0]
                     atIndex:i];
     }
-    
-    [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationAutomatic];
+    return paths;
 }
 
 #pragma mark - Lifecycle
@@ -45,6 +47,8 @@
         self.clearsSelectionOnViewWillAppear = NO;
         self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     }
+    
+    [self initFeeds];
     
     [super awakeFromNib];
 }
@@ -57,7 +61,7 @@
     self.detailViewController = (ItemDetailController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged]; //works around a bug
     
-    [self initFeeds];
+    [self refresh:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,12 +73,20 @@
 
 - (IBAction)refresh:(id)sender
 {
-    if (!self.refreshControl.refreshing)
+    if (sender != self.refreshControl)
+    {
         [self.refreshControl beginRefreshing];
+        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+    }
     
-    [self updateFeeds];
-    
-    [self.refreshControl endRefreshing];
+    dispatch_async(_defaultQueue, ^ {
+        NSMutableArray* newPaths = [self updateFeeds];
+        dispatch_async(_mainQueue, ^ {
+            [self.tableView insertRowsAtIndexPaths:newPaths
+                                  withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.refreshControl endRefreshing];
+        });
+    });
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -13,6 +13,7 @@
 
 - (NSArray*) retrieveNews
 {
+    [NSThread sleepForTimeInterval:1.5];
     return @[
              [[NewsItem alloc] initWithTitle:@"[A5I6] ==>"
                                         feed:@"MS Paint Adventures"

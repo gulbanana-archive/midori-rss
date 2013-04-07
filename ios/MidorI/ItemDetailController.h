@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewsItem.h"
 
 @interface ItemDetailController : UIViewController <UISplitViewControllerDelegate>
 
-@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) NewsItem* detailItem;
 
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @end
