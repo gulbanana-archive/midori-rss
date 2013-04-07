@@ -1,10 +1,11 @@
 multi-user auth
 feed management ui
-ios client
+ios REST hookup
 push notifications
 improve favicon
+ios icon
 figure out a way to make client available - test cert thing?
-uniform treatment of description/undescribed items
-single-page with preloaded content?
-websocket push
-fix bug with repeated content on ajax load
+uniform treatment of description/undescribed items? already this way on ios
+web - single-page with preloaded content?
+both web and ios - websocket push
+fix bug with repeated content on ajax load, js async race
