@@ -139,9 +139,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NewsItem* item = _items[indexPath.row];
+    if (!item.read) dispatch_async(_defaultQueue, ^(){
+        [_service markRead:item];
+        dispatch_async(_mainQueue, ^(){
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        });
+    });
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NewsItem* item = _items[indexPath.row];
         self.detailViewController.detailItem = item;
+    } else {
+        [self performSegueWithIdentifier:@"showDetail" sender:self];
     }
 }
 

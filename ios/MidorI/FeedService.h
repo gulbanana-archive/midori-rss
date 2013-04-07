@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NewsItem.h"
 
 @interface FeedService : NSObject
 
 - (NSArray*)retrieveNews;
+- (void)markRead:(NewsItem*)item;
+- (void)markUnread:(NewsItem*)item;
 
 @end

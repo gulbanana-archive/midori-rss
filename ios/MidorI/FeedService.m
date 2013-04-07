@@ -7,13 +7,12 @@
 //
 
 #import "FeedService.h"
-#import "NewsItem.h"
 
 @implementation FeedService
 
 - (NSArray*) retrieveNews
 {
-    [NSThread sleepForTimeInterval:1.5];
+    [NSThread sleepForTimeInterval:0.5];
     return @[
              [[NewsItem alloc] initWithTitle:@"[A5I6] ==>"
                                         feed:@"MS Paint Adventures"
@@ -24,6 +23,18 @@
                                         link:[NSURL URLWithString:@"http://www.mspaintadventures.com/?s=6&p=008013"]
                                         read:NO]
              ];
+}
+
+- (void)markRead:(NewsItem*)item
+{
+    [NSThread sleepForTimeInterval:0.5];
+    item.read = YES;
+}
+
+- (void)markUnread:(NewsItem*)item
+{
+    [NSThread sleepForTimeInterval:0.5];
+    item.read = NO;
 }
 
 @end

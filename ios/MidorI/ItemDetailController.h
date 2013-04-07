@@ -13,5 +13,4 @@
 
 @property (strong, nonatomic) NewsItem* detailItem;
 
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @end
