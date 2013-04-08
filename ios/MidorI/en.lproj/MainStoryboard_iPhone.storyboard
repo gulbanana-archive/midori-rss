@@ -97,7 +97,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <attributedString key="attributedTitle"/>
                         <connections>
-                            <action selector="refresh:" destination="12" eventType="valueChanged" id="6Q7-up-xHo"/>
+                            <action selector="refresh:" destination="12" eventType="valueChanged" id="dfn-7U-Olz"/>
                         </connections>
                     </refreshControl>
                     <connections>

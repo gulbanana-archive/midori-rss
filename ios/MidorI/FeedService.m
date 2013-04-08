@@ -12,6 +12,8 @@
 
 - (NSArray*) retrieveNews
 {
+    //[NSJSONSerialization JSONObjectWithData:<#(NSData *)#> options:<#(NSJSONReadingOptions)#> error:<#(NSError *__autoreleasing *)#>
+    
     [NSThread sleepForTimeInterval:0.5];
     return @[
              [[NewsItem alloc] initWithTitle:@"[A5I6] ==>"

@@ -60,7 +60,9 @@
     self.editButtonItem.title = @"Mark";
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     self.detailViewController = (ItemDetailController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged]; //works around a bug
+    [self.refreshControl addTarget:self
+                            action:@selector(refresh:)
+                  forControlEvents:UIControlEventValueChanged]; //works around a bug
     
     [self refresh:self];
 }
@@ -155,7 +157,8 @@
         [_service markRead:item];
         dispatch_async(_mainQueue, ^(){
             [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad &&
+                [self.tableView.indexPathForSelectedRow isEqual:indexPath])
                 [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         });
     });
