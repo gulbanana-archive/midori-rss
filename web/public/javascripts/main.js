@@ -2,17 +2,17 @@ $(document).ready(function(){
 	//wrapper necessary?
 });
 
-var skip = 15
+var skip = 0;
 $(window).scroll(function()
 {
     if($(window).scrollTop() == $(document).height() - $(window).height())
     {
         $('div#more').show();
-        $.ajax("/more", {type:"POST", data: JSON.stringify(skip), contentType: "application/json", success: function(html)
+        skip += 15;
+        $.get("/more/"+skip, function(html)
         {
             if(html)
             {
-            	skip += 15
                 $("#items").append(html);
                 $('div#more').hide();
             }
@@ -20,10 +20,6 @@ $(window).scroll(function()
             {
                 $('div#more').html('<center>No more items to show.</center>');
             }
-        }, error: function()
-        {
-        	$('div#more').hide();
-        }
         });
     }
 });

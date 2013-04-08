@@ -23,19 +23,15 @@ class Web extends Controller { this: DAOComponent with ActorComponent with Authe
     }
   }
   
-  def more = Action(parse.json) { request =>
-    request.body.validate[Int].map {
-      case start => Async { 
-        Authenticated { implicit user => 
-          for (
-            items <- paginatedItems(start, pageSize);
-            marked <- markRead(items)
-          ) yield Ok(views.html.items(items))
-        }
-      } 
-    }.recoverTotal { error =>
-      BadRequest("Invalid request body.")
-    }
+  def more(start: Int) = Action {
+    Async { 
+      Authenticated { implicit user => 
+        for (
+          items <- paginatedItems(start, pageSize);
+          marked <- markRead(items)
+        ) yield Ok(views.html.items(items))
+      }
+    } 
   }
   
   private def paginatedItems(skip: Int, take: Int)(implicit user: User) = for (feeds <- dao.getSubscribedFeeds(user)) yield feeds
