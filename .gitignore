@@ -21,6 +21,7 @@ RUNNING_PID
 .project
 .settings
 .history
+.worksheet
 
 # xcode
 build/*
