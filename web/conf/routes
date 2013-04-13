@@ -7,7 +7,8 @@ GET     /                           @controllers.Web.index
 GET     /more/:start                @controllers.Web.more(start: Int)
 
 # JSON API
-#GET     /api/entries             @controllers.API.fromDate
+#POST     /api/entries             @controllers.API.fromDate
+#POST     /api/entries             @controllers.API.fromDate
 
 # Test stuff
 GET     /test/create                @controllers.Test.create

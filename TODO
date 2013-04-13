@@ -8,5 +8,4 @@ ios - distribute to some testers
 uniform treatment of description/undescribed items? already this way on ios
 web - single-page with preloaded content?
 both - websocket push
-web - fix bug with repeated content on ajax load, js async race
 ios - page loading notification
