@@ -25,6 +25,7 @@
 		E597585017114CD900695DAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E597582517114CD800695DAD /* Foundation.framework */; };
 		E597585817114CD900695DAD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E597585617114CD900695DAD /* InfoPlist.strings */; };
 		E597585B17114CD900695DAD /* MidorITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E597585A17114CD900695DAD /* MidorITests.m */; };
+		E597BBA31714EDD50046AD81 /* AggregatedNews.m in Sources */ = {isa = PBXBuildFile; fileRef = E597BBA21714EDD50046AD81 /* AggregatedNews.m */; };
 		E59961311711BE9200E194BA /* NewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E59961301711BE9200E194BA /* NewsItem.m */; };
 		E59961341711C6A200E194BA /* FeedService.m in Sources */ = {isa = PBXBuildFile; fileRef = E59961331711C6A200E194BA /* FeedService.m */; };
 		E59961371711CD0E00E194BA /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E59961361711CD0E00E194BA /* ItemCell.m */; };
@@ -66,6 +67,8 @@
 		E597585717114CD900695DAD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E597585917114CD900695DAD /* MidorITests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MidorITests.h; sourceTree = "<group>"; };
 		E597585A17114CD900695DAD /* MidorITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MidorITests.m; sourceTree = "<group>"; };
+		E597BBA11714EDD50046AD81 /* AggregatedNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AggregatedNews.h; sourceTree = "<group>"; };
+		E597BBA21714EDD50046AD81 /* AggregatedNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AggregatedNews.m; sourceTree = "<group>"; };
 		E599612F1711BE9200E194BA /* NewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsItem.h; sourceTree = "<group>"; };
 		E59961301711BE9200E194BA /* NewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsItem.m; sourceTree = "<group>"; };
 		E59961321711C6A200E194BA /* FeedService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedService.h; sourceTree = "<group>"; };
@@ -172,13 +175,29 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E599612C1711BD5700E194BA /* Controllers */ = {
+		E597BB9F1714ED370046AD81 /* Tablet */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Tablet;
+			sourceTree = "<group>";
+		};
+		E597BBA01714ED3C0046AD81 /* Universal */ = {
 			isa = PBXGroup;
 			children = (
 				E597583217114CD800695DAD /* AppDelegate.h */,
 				E597583317114CD800695DAD /* AppDelegate.m */,
 				E597584117114CD800695DAD /* ItemListController.h */,
 				E597584217114CD800695DAD /* ItemListController.m */,
+			);
+			name = Universal;
+			sourceTree = "<group>";
+		};
+		E599612C1711BD5700E194BA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E597BBA01714ED3C0046AD81 /* Universal */,
+				E597BB9F1714ED370046AD81 /* Tablet */,
 				E597584417114CD800695DAD /* ItemDetailController.h */,
 				E597584517114CD900695DAD /* ItemDetailController.m */,
 			);
@@ -192,6 +211,8 @@
 				E59961301711BE9200E194BA /* NewsItem.m */,
 				E59961321711C6A200E194BA /* FeedService.h */,
 				E59961331711C6A200E194BA /* FeedService.m */,
+				E597BBA11714EDD50046AD81 /* AggregatedNews.h */,
+				E597BBA21714EDD50046AD81 /* AggregatedNews.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -325,6 +346,7 @@
 				E59961311711BE9200E194BA /* NewsItem.m in Sources */,
 				E59961341711C6A200E194BA /* FeedService.m in Sources */,
 				E59961371711CD0E00E194BA /* ItemCell.m in Sources */,
+				E597BBA31714EDD50046AD81 /* AggregatedNews.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
