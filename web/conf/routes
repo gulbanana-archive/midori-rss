@@ -3,17 +3,17 @@
 # ~~~~
 
 # HTML Website
-GET     /                           @controllers.Web.index
-GET     /more/:start                @controllers.Web.more(start: Int)
+GET     /                           @controllers.web.Application.index
+GET     /more/:start                @controllers.web.Application.more(start: Int)
+
+# Test utilities
+GET     /test/create                @controllers.web.Test.create
+GET     /test/delete                @controllers.web.Test.delete
+GET     /test/reset                 @controllers.web.Test.reset
 
 # JSON API
-#POST     /api/entries             @controllers.API.fromDate
-#POST     /api/entries             @controllers.API.fromDate
-
-# Test stuff
-GET     /test/create                @controllers.Test.create
-GET     /test/delete                @controllers.Test.delete
-GET     /test/reset                 @controllers.Test.reset
+POST     /api/news                  @controllers.api.News.get
+POST     /api/mark                  @controllers.api.News.set
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

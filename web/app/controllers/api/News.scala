@@ -1,4 +1,4 @@
-package controllers
+package controllers.api
 
 import scala.concurrent._
 import ExecutionContext.Implicits.global
@@ -8,11 +8,12 @@ import org.joda.time._
 import models._
 import dal._
 import actors._
+import controllers.Authenticator
 
-class Web extends Controller { this: DAOComponent with ActorComponent with Authenticator => 
+class News extends Controller { this: DAOComponent with ActorComponent with Authenticator => 
   private val pageSize = 15
   
-  def index = Action { 
+  def get = Action { 
     Async { 
       Authenticated { implicit user => 
         for (
@@ -23,15 +24,19 @@ class Web extends Controller { this: DAOComponent with ActorComponent with Authe
     }
   }
   
-  def more(start: Int) = Action {
-    Async { 
-      Authenticated { implicit user => 
-        for (
-          items <- paginatedItems(start, pageSize);
-          marked <- markRead(items)
-        ) yield Ok(views.html.items(items))
-      }
-    } 
+  def set = Action(parse.json) { request =>
+    request.body.validate[Int].map {
+      case start => Async { 
+        Authenticated { implicit user => 
+          for (
+            items <- paginatedItems(start, pageSize);
+            marked <- markRead(items)
+          ) yield Ok(views.html.items(items))
+        }
+      } 
+    }.recoverTotal { error =>
+      BadRequest("Invalid request body.")
+    }
   }
   
   private def paginatedItems(skip: Int, take: Int)(implicit user: User) = for (feeds <- dao.getSubscribedFeeds(user)) yield feeds

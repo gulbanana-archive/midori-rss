@@ -7,6 +7,8 @@ import dal._
 import rss._
 import push._
 import controllers._
+import controllers.web._
+import controllers.api._
 import actors._
 import rss.ROMERSSComponent
 
@@ -22,7 +24,7 @@ object Composer extends ReflectiveFactory {
   private val notifyInterval = current.configuration.getMilliseconds("midori.notifyInterval").get.millis
 
   override val roots = Map[Class[_], AnyRef](
-    classOf[Web] -> new Web with MongoDAOComponent with Authenticator with Actors,
+    classOf[Application] -> new Application with MongoDAOComponent with Authenticator with Actors,
     classOf[Test] -> new Test with MongoDAOComponent,
     classOf[Bootstrapper] -> new Bootstrapper(checkInterval, notifyInterval) with Actors
   ) 

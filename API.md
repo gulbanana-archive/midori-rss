@@ -18,6 +18,7 @@ Result:
     {
         "title": "News item title", 
         "link": "http://feed-url/item", 
+	"read": false,
         "date": 1000,
         "feed": {
             "title": "News feed name", 
@@ -27,6 +28,7 @@ Result:
     {
         "title": "Next item", 
         "link": "http://feed-url/item2", 
+	"read": true,
         "date": 990,
         "feed": {
             "title": "News feed name", 
