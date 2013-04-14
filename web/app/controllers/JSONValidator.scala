@@ -6,18 +6,14 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json._
 
 trait JSONValidator { this: Controller =>
-  //standard Validated supports Async{} bodies; the difference between 
-  //these two is that ValidatedAsync does the actual validation asynchronously 
+  //probably don't need to use this. standard Validated supports Async{} bodies; the 
+  //difference is that ValidatedAsync does the actual validation asynchronously 
   def ValidatedAsync[A](action: A => Future[Result])(implicit reader: Reads[A]): EssentialAction = {
     Action(parse.json) { implicit request =>
       Async {
         request.body.validate[A].fold(
-          valid = { query =>
-            action(query)
-          },
-          invalid = { e => 
-            Future.successful(BadRequest(JsError.toFlatJson(e)).as("application/json"))
-          }
+          valid = query => action(query),
+          invalid = e => Future.successful(BadRequest(JsError.toFlatJson(e)).as("application/json"))
         )
       }
     }
@@ -29,12 +25,8 @@ trait JSONValidator { this: Controller =>
   def Validated[A](action: A => Result)(implicit reader: Reads[A]): EssentialAction = {
     Action(parse.json) { implicit request =>
       request.body.validate[A].fold(
-        valid = { query =>
-          action(query)
-        },
-        invalid = { e => 
-          BadRequest(JsError.toFlatJson(e)).as("application/json")
-        }
+        valid = query => action(query),
+        invalid = e => BadRequest(JsError.toFlatJson(e)).as("application/json")
       )
     }
   }
