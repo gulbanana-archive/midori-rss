@@ -1,24 +1,26 @@
-# TODO #
+TODO
+====
 rough list of planned features, unprioritised
 
-## backend ##
+### backend ###
 - multi-user auth
 - feed management
 - websocket based push
 - supervisor needs to restart actors **and re-schedule**
 
-## web ##
+### web ###
 - feed management ui
 - improve favicon
 - uniform treatment of description/undescribed items?
 - single-page with preloaded content?
 
-## ios ##
+### ios ###
 - feed management ui
 - API hookup
 - push notifications
 - icon
 - distribute to some testers
 
-## browser extension ##
- 
+### browser extension ###
+- chrome integration
+- use API
