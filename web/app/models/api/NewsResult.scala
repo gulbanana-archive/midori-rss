@@ -5,7 +5,8 @@ import org.joda.time.DateTime
   
 case class NewsResultFeed (
   link: URL,
-  title: String
+  title: String,
+  url: URL
 )
 
 case class NewsResult (
@@ -15,3 +16,7 @@ case class NewsResult (
   read: Boolean,
   feed: NewsResultFeed
 )
+
+object NewsResult {
+  implicit val ordering : Ordering[NewsResult] = Ordering.by[NewsResult,Long](res => res.posted.getMillis).reverse
+}

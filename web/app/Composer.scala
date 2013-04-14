@@ -24,9 +24,10 @@ object Composer extends ReflectiveFactory {
   private val notifyInterval = current.configuration.getMilliseconds("midori.notifyInterval").get.millis
 
   override val roots = Map[Class[_], AnyRef](
+    classOf[Bootstrapper] -> new Bootstrapper(checkInterval, notifyInterval) with Actors,
+    classOf[News] -> new News with MongoDAOComponent with Authenticator with Validator with JSONRPC,
     classOf[Application] -> new Application with MongoDAOComponent with Authenticator with Actors,
-    classOf[Test] -> new Test with MongoDAOComponent,
-    classOf[Bootstrapper] -> new Bootstrapper(checkInterval, notifyInterval) with Actors
+    classOf[Test] -> new Test with MongoDAOComponent
   ) 
 }
 

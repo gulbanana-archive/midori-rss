@@ -13,8 +13,29 @@ import scala.runtime.RichBoolean
 
 class News extends Controller { this: DAOComponent with JSONRPC => 
   def get = RPC { (user:User, query:NewsRequest) =>
-    future {Seq[NewsResult]()}
+    for (feeds <- dao.getSubscribedFeeds(user)) yield feeds
+      .filter(feed => feed.entries.isDefined)
+      .flatMap(feed => feed.entries.get.map(entry => buildResult(user, feed, entry)))
+      .filter(result => query.read || !result.read)
+      .sorted
+      .take(query.limit)
   }
+  
+  private def buildResult(user: User, feed: Feed, entry: Entry) = NewsResult(
+    entry.link,
+    entry.title,
+    entry.posted,
+    user
+      .subscriptions
+      .filter(sub => sub.feed==feed.url)
+      .flatMap(_.entries)
+      .contains(entry.link.toString),
+    NewsResultFeed(
+      feed.link,
+      feed.title,
+      feed.url
+    )
+  )
   
   def set = RPC { (user:User, query:Seq[MarkRequest]) => 
     val successes = query.map { req =>
