@@ -1,9 +1,3 @@
-package models {
-  package object api {
-    type NewsResult = Seq[NewsItem]
-  }
-}
-
 package models.api {
   import java.net.URL
   import play.api.libs.json._
@@ -11,23 +5,23 @@ package models.api {
   import org.joda.time.DateTime
   import models.JSON._
   
-  case class NewsItem (
+  case class NewsResult (
+    date: DateTime,
+    read: Boolean,
     link: URL,
     title: String, 
-    read: Boolean,
-    date: DateTime,
     feedLink: URL,
     feedTitle: String
   )
   
-  object NewsItem {
+  object NewsResult {
     implicit val jsonFormat = (
+      (JsPath \ "date").format[DateTime] and
+      (JsPath \ "read").format[Boolean] and     
       (JsPath \ "link").format[URL] and
       (JsPath \ "title").format[String] and
-      (JsPath \ "read").format[Boolean] and
-      (JsPath \ "date").format[DateTime] and
       (JsPath \ "feed" \ "link").format[URL] and
       (JsPath \ "feed" \ "title").format[String]
-    )(NewsItem.apply, unlift(NewsItem.unapply))
+    )(NewsResult.apply, unlift(NewsResult.unapply))
   }
 }

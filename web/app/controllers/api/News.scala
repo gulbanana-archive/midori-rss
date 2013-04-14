@@ -11,7 +11,7 @@ import models.api._
 
 class News extends Controller { this: DAOComponent with ActorComponent with Authenticator with JSONValidator => 
   def get = Validated { query: NewsRequest =>
-    Seq[NewsItem]().asJson
+    Seq[NewsResult]().asJson
   }
   
   def set = Validated { query: MarkRequest => 
