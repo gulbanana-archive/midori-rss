@@ -21,12 +21,13 @@ package models.api {
   )
   
   object NewsItem {
-    implicit val jsonFormat =
+    implicit val jsonFormat = (
       (JsPath \ "link").format[URL] and
       (JsPath \ "title").format[String] and
       (JsPath \ "read").format[Boolean] and
       (JsPath \ "date").format[DateTime] and
       (JsPath \ "feed" \ "link").format[URL] and
-      (JsPath \ "feed" \ "title").format[String] tupled
+      (JsPath \ "feed" \ "title").format[String]
+    )(NewsItem.apply, unlift(NewsItem.unapply))
   }
 }

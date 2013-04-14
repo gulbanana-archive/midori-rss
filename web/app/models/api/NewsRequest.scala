@@ -12,9 +12,10 @@ case class NewsRequest (
 )
   
 object NewsRequest {
-  implicit val jsonFormat = 
+  implicit val jsonFormat = (
     (JsPath \ "limit").format[Int] and
     (JsPath \ "read").format[Boolean] and
     (JsPath \ "from").formatNullable[DateTime] and
-    (JsPath \ "to").formatNullable[DateTime] tupled 
+    (JsPath \ "to").formatNullable[DateTime]
+  )(NewsRequest.apply, unlift(NewsRequest.unapply))
 }
