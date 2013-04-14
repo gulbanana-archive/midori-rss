@@ -1,10 +1,10 @@
 package controllers.web
 
 import scala.concurrent._
-import scala.concurrent.ExecutionContext.Implicits.global
 import java.net.URL
 import play.api._
 import play.api.mvc._
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import org.joda.time._
 import models._
 import dal._

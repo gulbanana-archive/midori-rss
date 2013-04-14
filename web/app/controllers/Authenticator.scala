@@ -1,11 +1,10 @@
 package controllers
 
 import scala.concurrent._
-import scala.concurrent.ExecutionContext.Implicits.global
 import play.api.mvc._
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import dal._
 import models._
-import ioc._
 
 trait Authenticator { this: Controller with DAOComponent =>
   def Authenticated(body: User => Future[Result]) = {
