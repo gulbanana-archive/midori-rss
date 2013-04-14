@@ -1,8 +1,9 @@
 package models.api
 
-import org.joda.time.DateTime 
+import java.net.URL
 
 case class MarkRequest (
-  date: DateTime, 
+  feed: URL,
+  item: URL, 
   read: Boolean
 )

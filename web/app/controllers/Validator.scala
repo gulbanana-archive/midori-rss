@@ -5,7 +5,7 @@ import play.api.mvc._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json._
 
-trait JSONValidator { this: Controller =>
+trait Validator { this: Controller =>
   //probably don't need to use this. standard Validated supports Async{} bodies; the 
   //difference is that ValidatedAsync does the actual validation asynchronously 
   def ValidatedAsync[A](action: A => Future[Result])(implicit reader: Reads[A]): EssentialAction = {
@@ -29,10 +29,5 @@ trait JSONValidator { this: Controller =>
         invalid = e => BadRequest(JsError.toFlatJson(e)).as("application/json")
       )
     }
-  }
-  
-  //use on a model class to turn it into a json result
-  implicit class Encodable[A : Writes](wrapped: A)  {
-    def asJson = Ok(Json.toJson(wrapped)).as("application/json")
   }
 }

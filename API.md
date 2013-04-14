@@ -15,7 +15,7 @@ Request: NewsRequest
 Result: array of NewsResult
 
 	[{
-		"date": 34289824,					//unique date identifying item
+		"posted": 34289824,					//date of item posting, according to the feed
 		"read": false,						//whether item has been read
 		"link": "http://feed-url/item", 		
 		"title": "News item title", 
@@ -29,8 +29,9 @@ Result: array of NewsResult
 Request: array of MarkRequest
 
 	[{
-		"date": 32424234234,	//number  - identify item by date
-		"read": true			//boolean - mark as either read or unread
+		"item": http://feed-url/item,	//string - item's link
+		"feed": "http://feed-url",		//string - feed containing the item
+		"read": true					//boolean - mark as either read or unread
 	}]
 	
 Result: MarkResult

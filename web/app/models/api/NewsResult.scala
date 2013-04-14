@@ -9,9 +9,9 @@ case class NewsResultFeed (
 )
 
 case class NewsResult (
-  date: DateTime,
-  read: Boolean,
   link: URL,
   title: String, 
+  posted: DateTime,
+  read: Boolean,
   feed: NewsResultFeed
 )

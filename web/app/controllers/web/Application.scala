@@ -42,6 +42,6 @@ class Application extends Controller { this: DAOComponent with ActorComponent wi
     .take(take)
     
   private def markRead(items: Seq[Item])(implicit user: User) = Future
-    .traverse(items.filter(item => !item.read))(item => dao.markRead(user, item))
+    .traverse(items.filter(item => !item.read))(item => dao.markRead(user, item.feed.url, item.entry.link))
     .map(futures => futures.fold(true)(_ && _))
 }
