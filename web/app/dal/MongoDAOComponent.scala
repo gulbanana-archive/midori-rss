@@ -12,6 +12,7 @@ import reactivemongo.bson.handlers.DefaultBSONHandlers._
 import reactivemongo.core.commands.LastError
 import org.joda.time._
 import models._
+import models._package._
 
 trait MongoDAOComponent extends DAOComponent {
   val dao = new MongoDAO()

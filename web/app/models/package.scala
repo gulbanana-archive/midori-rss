@@ -1,9 +1,11 @@
+package models
+
 import java.net.URL
 import play.api.libs.json._
 import play.api.libs.functional.syntax._
 import reactivemongo.bson._
 
-package object models {
+object _package {
   //must use "$oid" extension in the path - attempted to build that in, untested
   //alternative: (__ \ "_id" \ "$oid").format[BSONObjectID]
   //$date, $int, $long and $double also exist

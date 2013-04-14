@@ -7,6 +7,7 @@ import controllers._
 import actors._
 import dal._
 import models._
+import models._package._
 import models.api._
 
 class News extends Controller { this: DAOComponent with ActorComponent with Authenticator with JSONValidator => 
