@@ -28,15 +28,18 @@ trait ROMERSSComponent extends RSSComponent {
         Logger.debug("feed '%s' updated at %s".format(title, pubDate.toString()))
         val lastUpdate = DateTime.now
         val nextUpdate = lastUpdate.plus(ttl)
-        Some(Feed(
-          url, 
-          title, 
-          feed.getDescription(), 
-          new URL(feed.getLink()), 
-          lastUpdate, 
-          nextUpdate, 
-          Some(entries.map(asEntry))
-        ))
+        val updatedFeed = Feed(
+          FeedInfo(
+	        url, 
+	        title, 
+	        feed.getDescription(), 
+	        new URL(feed.getLink()), 
+	        lastUpdate, 
+	        nextUpdate
+          ),
+          entries.map(asEntry)
+        )
+        Some(updatedFeed)
       } else {
         Logger.debug("feed '%s' not updated since %s".format(title, pubDate.toString()))
         None

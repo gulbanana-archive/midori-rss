@@ -10,7 +10,7 @@ import models._
 
 trait JSONRPC extends Controller { this: DAOComponent with Authenticator with Validator => 
   
-  implicit class Returnable[A : Writes](wrapped: A)  {
+  implicit class WrapsInResult[A : Writes](wrapped: A)  {
     def asJson = Ok(Json.toJson(wrapped)).as("application/json")
   }
   
@@ -20,9 +20,5 @@ trait JSONRPC extends Controller { this: DAOComponent with Authenticator with Va
         body(user, query).map(_.asJson)
       }
     }
-  }
-  
-  implicit class Pipelineable[A](wrapped: A) {
-    def |>[B](f: A => B) = f(wrapped)
   }
 }

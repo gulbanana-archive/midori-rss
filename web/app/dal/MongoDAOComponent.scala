@@ -78,13 +78,15 @@ trait MongoDAOComponent extends DAOComponent {
     
     def createFeed(url: URL) = {
       val insert = Feed(
-        url, 
-        "Unknown Feed", 
-        "No description.",
-        new URL("http://"),
-        new DateTime(1970, 1, 1, 1, 1),
-        DateTime.now,
-        None
+        FeedInfo(
+	      url, 
+	      "Unknown Feed", 
+	      "No description.",
+	      new URL("http://"),
+	      new DateTime(1970, 1, 1, 1, 1),
+	      DateTime.now
+        ),
+        Seq()
       )
       
       feeds
@@ -92,10 +94,10 @@ trait MongoDAOComponent extends DAOComponent {
         .map(checkError)
     }
     
-    def getExpiredFeeds(at: DateTime): Future[Seq[Feed]] = {
+    def getExpiredFeeds(at: DateTime): Future[Seq[FeedInfo]] = {
       val query = QueryBuilder()
         .query(Json.obj(
-          "nextUpdate" -> Json.obj("$lte" -> at)
+          "info.nextUpdate" -> Json.obj("$lte" -> at)
         ))
         .projection(Json.obj(
           "entries" -> 0
@@ -104,14 +106,14 @@ trait MongoDAOComponent extends DAOComponent {
       feeds
         .find[JsValue](query)
         .toList
-        .map(_.map(feed => feed.as[Feed])
+        .map(_.map(feed => (feed \ "info").as[FeedInfo])
       )
     }
     
     def getSubscribedFeeds(user: User): Future[Seq[Feed]] = {
       val feedQuery = QueryBuilder()
         .query(Json.obj(
-          "url" -> Json.obj(
+          "info.url" -> Json.obj(
             "$in" -> user.subscriptions.map(_.feed)
         )))
       
@@ -123,15 +125,11 @@ trait MongoDAOComponent extends DAOComponent {
     }
     
     def updateFeed(feed: Feed): Future[Boolean] = {
-      val selector = Json.obj("url" -> feed.url) 
+      val selector = Json.obj("info.url" -> feed.info.url) 
       val update = Json.obj("$set" -> Json.obj(
-        "title" -> feed.title,
-        "description" -> feed.description,
-        "link" -> feed.link,
-        "lastUpdate" -> feed.lastUpdate,
-        "nextUpdate" -> feed.nextUpdate
+        "info" -> Json.toJson(feed.info)
       ), "$addToSet" -> Json.obj(
-        "entries" -> Json.obj("$each" -> feed.entries.getOrElse[Seq[Entry]](Seq.empty[Entry]))
+        "entries" -> Json.obj("$each" -> feed.entries)
       ))
       
       feeds

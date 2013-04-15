@@ -2,6 +2,6 @@ package models
 
 case class Item(
   entry: Entry, 
-  feed: Feed,
+  feed: FeedInfo,
   read: Boolean
 )

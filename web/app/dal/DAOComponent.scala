@@ -17,7 +17,7 @@ trait DAOComponent {
     def createFeed(feed: Feed) : Future[Boolean]
     def createFeed(url: URL) : Future[Boolean]
     def getSubscribedFeeds(user: User) : Future[Seq[Feed]]
-    def getExpiredFeeds(at: DateTime) : Future[Seq[Feed]]
+    def getExpiredFeeds(at: DateTime) : Future[Seq[FeedInfo]]
     def updateFeed(feed: Feed) : Future[Boolean]
     def deleteAllFeeds() : Future[Boolean]
   }

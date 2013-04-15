@@ -14,8 +14,8 @@ import rss._
 
 abstract class FeedCheckerMessage
 case class CheckAll() extends FeedCheckerMessage
-case class UpdateOne(feed: Feed) extends FeedCheckerMessage
-case class UpdateMany(feeds: Seq[Feed]) extends FeedCheckerMessage
+case class UpdateOne(feed: FeedInfo) extends FeedCheckerMessage
+case class UpdateMany(feeds: Seq[FeedInfo]) extends FeedCheckerMessage
 case class UpdateStatus(feed: Feed, success: Boolean) extends FeedCheckerMessage
 
 class FeedChecker extends Actor { this: RSSComponent with DAOComponent =>
@@ -23,19 +23,19 @@ class FeedChecker extends Actor { this: RSSComponent with DAOComponent =>
     case CheckAll() => checkAll
     case UpdateOne(feed) => update(feed)
     case UpdateMany(feeds) => feeds.map(update)
-    case UpdateStatus(feed, true) => Logger.info("'%s' updated".format(feed.title))
-    case UpdateStatus(feed, false) => Logger.warn("'%s' update failed".format(feed.title))
+    case UpdateStatus(feed, true) => Logger.info("'%s' updated".format(feed.info.title))
+    case UpdateStatus(feed, false) => Logger.warn("'%s' update failed".format(feed.info.title))
     case unknown => Logger.warn("FeedChecker received unknown message %s".format(unknown.toString))
   }
   
   private def checkAll {
     dao
       .getExpiredFeeds(DateTime.now)
-      .map(UpdateMany(_))
+      .map(UpdateMany.apply)
       .pipeTo(self)
   }
   
-  private def update(before: Feed) {
+  private def update(before: FeedInfo) {
     for (feed <- source.retrieve(before.url, before.lastUpdate)) yield dao
       .updateFeed(feed)
       .map(UpdateStatus(feed, _))

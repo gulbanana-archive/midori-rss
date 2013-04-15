@@ -3,7 +3,6 @@ TODO
 rough list of planned features, semi-prioritised
 
 ### backend ###
-- api date filtering
 - supervisor needs to restart actors **and re-schedule**
 - multi-user auth
 - feed management

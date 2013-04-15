@@ -35,8 +35,7 @@ class Application extends Controller { this: DAOComponent with ActorComponent wi
   }
   
   private def paginatedItems(skip: Int, take: Int)(implicit user: User) = for (feeds <- dao.getSubscribedFeeds(user)) yield feeds
-    .filter(feed => feed.entries.isDefined)
-    .flatMap(feed => feed.entries.get.map(entry => Item(entry, feed, user.subscriptions.filter(sub => sub.feed==feed.url).flatMap(_.entries).contains(entry.link.toString))))
+    .flatMap(feed => feed.entries.map(entry => Item(entry, feed.info, user.subscriptions.filter(sub => sub.feed==feed.info.url).flatMap(_.entries).contains(entry.link.toString))))
     .sorted(Ordering.by[Item,Long](item => item.entry.posted.getMillis).reverse)
     .drop(skip)
     .take(take)

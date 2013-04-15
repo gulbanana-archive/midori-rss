@@ -20,6 +20,7 @@ object _package {
   )
   
   implicit val entryFormat = Json.format[Entry]
+  implicit val infoFormat = Json.format[FeedInfo]
   implicit val feedFormat = Json.format[Feed]
   implicit val subscriptionFormat = Json.format[Subscription]
   implicit val userFormat = Json.format[User]
