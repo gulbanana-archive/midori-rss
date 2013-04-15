@@ -1,26 +1,30 @@
 TODO
 ====
-rough list of planned features, unprioritised
+rough list of planned features, semi-prioritised
 
 ### backend ###
+- api date filtering
+- supervisor needs to restart actors **and re-schedule**
 - multi-user auth
 - feed management
 - websocket based push
-- supervisor needs to restart actors **and re-schedule**
 
 ### web ###
 - feed management ui
 - improve favicon
+- better mark control
 - uniform treatment of description/undescribed items?
 - single-page with preloaded content?
 
 ### ios ###
-- feed management ui
+- data model
 - API hookup
+- feed management ui
 - push notifications
 - icon
 - distribute to some testers
 
-### browser extension ###
+### browser extensions ###
 - chrome integration
-- use API
+- JS api hookup
+- safari integration
