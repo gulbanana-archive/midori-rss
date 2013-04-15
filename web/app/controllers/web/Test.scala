@@ -35,8 +35,19 @@ class Test extends Controller { this: DAOComponent =>
   
   def createImpl = {      
     val insertions = Seq(
+	  dao.createFeed(new URL("http://www.mspaintadventures.com/rss/rss.xml")),
+	  dao.createFeed(new URL("http://feeds.feedburner.com/JonSkeetCodingBlog?format=xml")),
+	  dao.createFeed(new URL("http://badmachinery.com/index.xml")),
+	  dao.createFeed(new URL("http://cucumber.gigidigi.com/feed/")),
+	  dao.createFeed(new URL("http://www.doublefine.com/dfa/dfarss/")),
+	  dao.createFeed(new URL("http://www.rsspect.com/rss/gunner.xml")),
+	  dao.createFeed(new URL("http://feeds.feedburner.com/Introversion_blog?format=xml")),
+	  dao.createFeed(new URL("http://nedroid.com/feed/")),
+	  dao.createFeed(new URL("http://nonadventures.com/feed/")),
+	  dao.createFeed(new URL("http://the-witness.net/news/feed/")),
+	  dao.createFeed(new URL("https://issues.scala-lang.org/activity?maxResults=20&streams=user+IS+den%5C_sh&title=Denys%20Shabalyn")),
       dao.createUser(User(
-	      "banana", 
+	    "banana", 
 	      Seq(
 	        Subscription(new URL("http://www.mspaintadventures.com/rss/rss.xml"), Seq()),
 	        Subscription(new URL("http://feeds.feedburner.com/JonSkeetCodingBlog?format=xml"), Seq()),
@@ -48,19 +59,10 @@ class Test extends Controller { this: DAOComponent =>
 	        Subscription(new URL("http://feeds.feedburner.com/Introversion_blog?format=xml"), Seq()),
 	        Subscription(new URL("http://nedroid.com/feed/"), Seq()),
 	        Subscription(new URL("http://nonadventures.com/feed/"), Seq()),
-	        Subscription(new URL("http://the-witness.net/news/feed/"), Seq())
+	        Subscription(new URL("http://the-witness.net/news/feed/"), Seq()),
+	        Subscription(new URL("https://issues.scala-lang.org/activity?maxResults=20&streams=user+IS+den%5C_sh&title=Denys%20Shabalyn"), Seq())
 	      )
-	    )),
-	    dao.createFeed(new URL("http://www.mspaintadventures.com/rss/rss.xml")),
-	    dao.createFeed(new URL("http://feeds.feedburner.com/JonSkeetCodingBlog?format=xml")),
-	    dao.createFeed(new URL("http://badmachinery.com/index.xml")),
-	    dao.createFeed(new URL("http://cucumber.gigidigi.com/feed/")),
-	    dao.createFeed(new URL("http://www.doublefine.com/dfa/dfarss/")),
-	    dao.createFeed(new URL("http://www.rsspect.com/rss/gunner.xml")),
-	    dao.createFeed(new URL("http://feeds.feedburner.com/Introversion_blog?format=xml")),
-	    dao.createFeed(new URL("http://nedroid.com/feed/")),
-	    dao.createFeed(new URL("http://nonadventures.com/feed/")),
-	    dao.createFeed(new URL("http://the-witness.net/news/feed/"))
+	    ))
     )
       
     Future.reduce(insertions) { _ && _ } map { 
