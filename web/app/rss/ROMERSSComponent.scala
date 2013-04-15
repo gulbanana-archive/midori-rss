@@ -23,6 +23,7 @@ trait ROMERSSComponent extends RSSComponent {
       val title = feed.getTitle()
       val entries = feed.getEntries().map(_.asInstanceOf[SyndEntry])
       val pubDate = new DateTime(if (feed.getPublishedDate != null) feed.getPublishedDate else entries.head.getPublishedDate)
+      val link = Option(feed.getLink()).getOrElse(feed.getUri())
       
       if (pubDate.isAfter(lastCheck)) {
         Logger.debug("feed '%s' updated at %s".format(title, pubDate.toString()))
@@ -33,7 +34,7 @@ trait ROMERSSComponent extends RSSComponent {
 	        url, 
 	        title, 
 	        feed.getDescription(), 
-	        new URL(feed.getLink()), 
+	        new URL(link), 
 	        lastUpdate, 
 	        nextUpdate
           ),
