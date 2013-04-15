@@ -21,6 +21,7 @@ trait ROMERSSComponent extends RSSComponent {
       
       val feed = fetcher.retrieveFeed(url)
       val title = feed.getTitle()
+      val description = Option(feed.getDescription()).getOrElse("")
       val entries = feed.getEntries().map(_.asInstanceOf[SyndEntry])
       val pubDate = new DateTime(if (feed.getPublishedDate != null) feed.getPublishedDate else entries.head.getPublishedDate)
       val link = Option(feed.getLink()).getOrElse(feed.getUri())
@@ -33,7 +34,7 @@ trait ROMERSSComponent extends RSSComponent {
           FeedInfo(
 	        url, 
 	        title, 
-	        feed.getDescription(), 
+	        description, 
 	        new URL(link), 
 	        lastUpdate, 
 	        nextUpdate

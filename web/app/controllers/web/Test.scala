@@ -60,7 +60,7 @@ class Test extends Controller { this: DAOComponent =>
 	        Subscription(new URL("http://nedroid.com/feed/"), Seq()),
 	        Subscription(new URL("http://nonadventures.com/feed/"), Seq()),
 	        Subscription(new URL("http://the-witness.net/news/feed/"), Seq()),
-	        Subscription(new URL("https://issues.scala-lang.org/activity?maxResults=20&streams=user+IS+den%5C_sh&title=Denys%20Shabalyn"), Seq())
+	        Subscription(new URL("https://issues.scala-lang.org/activity?maxResults=20&streams=user+IS+den%5C_sh&title=Denys%20Shabalin"), Seq())
 	      )
 	    ))
     )

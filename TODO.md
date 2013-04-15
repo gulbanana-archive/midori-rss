@@ -7,6 +7,7 @@ rough list of planned features, semi-prioritised
 - multi-user auth
 - feed management
 - websocket based push
+- strip html from item titles
 
 ### web ###
 - feed management ui
